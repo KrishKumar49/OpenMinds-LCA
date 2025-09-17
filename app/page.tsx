@@ -1,4 +1,4 @@
-'use client';
+"use client"
 
 // import Image from "next/image";
 
@@ -119,7 +119,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-hero py-20 lg:py-32">
         {/* Floating Metal Icons */}
