@@ -113,7 +113,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card-homepage";
 import { Navbar } from "@/components/navbar";
 import { ArrowRight, Target, Users, BarChart3, Sparkles, Mail} from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Index = () => {
   return (
@@ -145,7 +145,7 @@ const Index = () => {
 
             {/* Mode Selection Buttons */}
             <div className="flex flex-col lg:flex-row gap-8 justify-center items-stretch mb-16 max-w-5xl mx-auto">
-              <Link to="/non-expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <Link href="/non-expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                 <Card className="h-full p-8 glass-card interactive-scale hover:scale-105 transition-all duration-300 border-2 border-primary-300/30 hover:border-primary-300/60 bg-gradient-to-br from-primary-500/10 to-primary-600/5 hover:from-primary-400/15 hover:to-primary-500/10 group">
                   <div className="text-center">
                     <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🎯</div>
@@ -178,7 +178,7 @@ const Index = () => {
                 </Card>
               </Link>
 
-              <Link to="/expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <Link href="/expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
                 <Card className="h-full p-8 glass-card interactive-scale hover:scale-105 transition-all duration-300 border-2 border-secondary-300/30 hover:border-secondary-300/60 bg-gradient-to-br from-secondary-500/10 to-secondary-600/5 hover:from-secondary-400/15 hover:to-secondary-500/10 group">
                   <div className="text-center">
                     <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300">🧑‍💻</div>
@@ -277,7 +277,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/features">
+            <Link href="/features">
               <Button size="lg" variant="outline" className="px-8">
                 Explore All Features
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -299,12 +299,12 @@ const Index = () => {
               Start your first LCA analysis in under 2 minutes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/non-expert">
+              <Link href="/non-expert">
                 <Button size="lg" className="bg-gradient-sustainability text-white px-8">
                   🎯 Start Free Assessment
                 </Button>
               </Link>
-              <Link to="/expert">
+              <Link href="/expert">
                 <Button size="lg" variant="outline" className="px-8">
                   🧑‍💻 Try Expert Mode
                 </Button>
@@ -333,18 +333,18 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-3">Product</h4>
               <div className="space-y-2 text-sm">
-                <Link to="/features" className="text-muted-foreground hover:text-foreground block">Features</Link>
-                <Link to="/non-expert" className="text-muted-foreground hover:text-foreground block">Non-Expert Mode</Link>
-                <Link to="/expert" className="text-muted-foreground hover:text-foreground block">Expert Mode</Link>
-                <Link to="/dashboard" className="text-muted-foreground hover:text-foreground block">Dashboard</Link>
+                <Link href="/features" className="text-muted-foreground hover:text-foreground block">Features</Link>
+                <Link href="/non-expert" className="text-muted-foreground hover:text-foreground block">Non-Expert Mode</Link>
+                <Link href="/expert" className="text-muted-foreground hover:text-foreground block">Expert Mode</Link>
+                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground block">Dashboard</Link>
               </div>
             </div>
             
             <div>
               <h4 className="font-semibold mb-3">Company</h4>
               <div className="space-y-2 text-sm">
-                <Link to="/about" className="text-muted-foreground hover:text-foreground block">About Us</Link>
-                <Link to="/history" className="text-muted-foreground hover:text-foreground block">History</Link>
+                <Link href="/about" className="text-muted-foreground hover:text-foreground block">About Us</Link>
+                <Link href="/history" className="text-muted-foreground hover:text-foreground block">History</Link>
                 <a href="#" className="text-muted-foreground hover:text-foreground block">Contact</a>
                 <a href="#" className="text-muted-foreground hover:text-foreground block">Privacy</a>
               </div>
@@ -356,12 +356,7 @@ const Index = () => {
                 <Button variant="ghost" size="sm" className="p-2">
                   <Mail className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Linkedin className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Twitter className="w-4 h-4" />
-                </Button>
+
               </div>
             </div>
           </div>
