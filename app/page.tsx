@@ -1,3 +1,5 @@
+'use client';
+
 // import Image from "next/image";
 
 // export default function Home() {
@@ -108,15 +110,15 @@
 
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navbar";
-import { ArrowRight, Target, Users, BarChart3, Sparkles, Mail, Linkedin, Twitter } from "lucide-react";
+import { Card } from "@/components/ui/card-homepage";
+import { Navbar } from "@/components/navbar";
+import { ArrowRight, Target, Users, BarChart3, Sparkles, Mail} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navbar />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-hero py-20 lg:py-32">

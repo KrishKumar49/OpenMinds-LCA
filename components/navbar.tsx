@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 
@@ -16,18 +15,18 @@ const Navbar = () => {
   ];
 
 
-    const location = useLocation();
+  const pathname = usePathname();
 
-    function isActive(path: string) {
-        return location.pathname === path;
-    }
+  function isActive(path: string) {
+    return pathname === path;
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-sustainability rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">AI</span>
             </div>
@@ -39,7 +38,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link
                 key={item.path}
-                to={item.path}
+                href={item.path}
                 className={`transition-colors ${
                   isActive(item.path)
                     ? "text-primary font-medium"
@@ -53,12 +52,12 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/non-expert">
+            <Link href="/non-expert">
               <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5">
                 🎯 Quick Start
               </Button>
             </Link>
-            <Link to="/expert">
+            <Link href="/expert">
               <Button className="bg-gradient-technology text-white">
                 🧑‍💻 Expert Mode
               </Button>
@@ -69,3 +68,5 @@ const Navbar = () => {
     </nav>
     );
 }
+
+export { Navbar };
