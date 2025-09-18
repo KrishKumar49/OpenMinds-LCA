@@ -39,11 +39,8 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 href={item.path}
-                className={`transition-colors ${
-                  isActive(item.path)
-                    ? "text-primary font-medium"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`ransition-colors text-[oklch(.45_.02_240)] hover:text-[oklch(.65_.02_240)]
+                  `}
               >
                 {item.name}
               </Link>
@@ -52,16 +49,12 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/non-expert">
-              <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5">
-                🎯 Quick Start
+            <Link href="/login">
+              <Button variant="outline" className="border-primary/20 text-primary hover:bg-primary/5" style={{ color: 'oklch(.45 .02 240)' }}>
+                <img src="https://img.icons8.com/?size=30&id=oO0pZgktLNpK&format=png&color=000000" alt="" /> Login
               </Button>
             </Link>
-            <Link href="/expert">
-              <Button className="bg-gradient-technology text-white">
-                🧑‍💻 Expert Mode
-              </Button>
-            </Link>
+            
           </div>
         </div>
       </div>

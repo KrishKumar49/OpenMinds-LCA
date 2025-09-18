@@ -14,7 +14,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background:linear-gradient(
+    180deg,
+    oklch(0.97 0.015 160) 0%,   /* near white with green hue */
+    oklch(0.95 0.025 160) 50%,  /* soft mint */
+    oklch(0.93 0.035 160) 100%  /* slightly deeper */
+  );
     --foreground: #ededed;
   }
 }
@@ -24,3 +29,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
