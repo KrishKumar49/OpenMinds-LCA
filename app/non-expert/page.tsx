@@ -42,35 +42,38 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    question: "What type of metal product are you assessing?",
-    hint: "Think about the primary metal component in your product",
+    question: "What type of LCA do you want?",
+    hint: 
+    "Choose the assessment depth that matches your goal"
+    ,
     options: [
       {
-        id: "aluminum",
-        text: "Aluminum Products",
+        id: "screening",
+        text: "Screening",
         icon: <Wrench className="w-6 h-6" />,
-        description: "Cans, foils, automotive parts",
-        image: "/aluminum-ingots-metallic-silver.jpg",
+        description: "A quick, simplified LCA for early-stage projects or rough estimates, useful when speed matters more than detail.",
+        image: "/icon/image.png",
       },
       {
-        id: "copper",
-        text: "Copper Products",
+        id: "cradle",
+        text: "Detailed cradle-to-gate",
         icon: <Zap className="w-6 h-6" />,
-        description: "Wires, pipes, electronics",
-        image: "/copper-plumbing.png",
+        description: "A thorough analysis covering raw material extraction up to the factory gate, ideal for precise product footprinting.",
+        image: "/icon/Screenshot 2025-09-19 010651.png",
       },
       {
-        id: "steel",
-        text: "Steel Products",
+        id: "grave",
+        text: "Cradle-to-grave",
         icon: <Building className="w-6 h-6" />,
-        description: "Construction, machinery, tools",
-        image: "/steel-bars-metallic-gray.jpg",
+        description: "Covers the full life cycle of a product, from raw materials to disposal, providing the most comprehensive impact assessment.",
+        image: "/icon/Screenshot 2025-09-19 011427.png",
       },
       {
-        id: "ai-decide",
-        text: "Let AI Decide",
+        id: "comparison",
+        text: "Comparison",
         icon: <Image src={ai} alt="AI" width={24} height={24} className="object-contain" />,
-        description: "AI will analyze and choose the best approach",
+        description: "Evaluates two or more scenarios (e.g., virgin vs. recycled materials) to highlight differences in environmental impacts.",
+        image: "/icon/Screenshot 2025-09-19 011831.png",
       },
     ],
   },
@@ -107,56 +110,80 @@ const questions: Question[] = [
   },
   {
     id: 3,
-    question: "How long is the expected lifespan of this product?",
-    hint: "Think about how long the product will be used before replacement",
+    question: "Which impacts should be calculated?",
+    hint: "Decide which environmental effects matter for your study: carbon footprint, pollution (air, water, soil), human health, or a full standardized set like TRACI.",
     options: [
       {
-        id: "short",
-        text: "Short-term",
-        icon: <Clock className="w-6 h-6" />,
-        description: "Less than 1 year",
+        id: "climate",
+        text: "Climate Change (GWP)",
+        icon: <img src="https://img.icons8.com/?size=35&id=sq12QviUTP0G&format=png&color=0000FF" alt="" />,
+        description: "Greenhouse gas emissions affecting global warming.",
       },
       {
-        id: "medium",
-        text: "Medium-term",
-        icon: <Calendar className="w-6 h-6" />,
-        description: "1-10 years",
+        id: "acidification",
+        text: "Acidification (AP)",
+        icon: <img src="https://img.icons8.com/?size=35&id=9J4a9baLpBL7&format=png&color=0000FF" alt="" />,
+        description: "Soil and water acidification from emissions.",
       },
       {
-        id: "long",
-        text: "Long-term",
-        icon: <CalendarDays className="w-6 h-6" />,
-        description: "10+ years",
+        id: "eutrophication",
+        text: "Eutrophication",
+        icon: <img src="https://img.icons8.com/?size=35&id=BeEur00nh48n&format=png&color=0000FF" alt="" />,
+        description: "Nutrient overload in water bodies leading to algal growth.",
+      },
+      {
+        id: "smog",
+        text: "Smog formation",
+        icon: <img src="https://img.icons8.com/?size=35&id=mhDOqVX0b4ID&format=png&color=0000FF" alt="" />,
+        description: "Air quality impacts from ozone and particulate matter.",
+      },
+      {
+        id: "human",
+        text: "Human toxicity",
+        icon: <img src="https://img.icons8.com/?size=35&id=6qznCUCGwu3i&format=png&color=0000FF" alt="" />,
+        description: "Exposure risks to human health from pollutants.",
+      },
+      {
+        id: "depletion",
+        text: "Resource depletion",
+        icon: <img src="https://img.icons8.com/?size=35&id=-r4KGo880Lo1&format=png&color=0000FF" alt="" />,
+        description: "Consumption of non-renewable resources.",
+      },
+      {
+        id: "TRACI",
+        text: " All TRACI categories",
+        icon: <img src="https://img.icons8.com/?size=35&id=6482&format=png&color=0000FF" alt="" />,
+        description: "Covers the full standardized US EPA TRACI set.",
       },
       {
         id: "ai-decide",
         text: "Let AI Decide",
         icon: <Image src={ai} alt="AI" width={24} height={24} className="object-contain" />,
         description: "AI will analyze and choose the best approach",
-      },
+      }
     ],
   },
   {
     id: 4,
-    question: "What happens to the product at end of life?",
-    hint: "Consider the most likely disposal or recycling method",
+    question: "Should recycling or circularity be modeled?",
+    hint: "Decide how recycling is treated in the life cycle: virgin-only for baseline, recycled-only for circular scenarios, mix for custom percentages, or AI-estimated rates for realistic averages.",
     options: [
       {
-        id: "recycle",
-        text: "Recycled",
-        icon: <Recycle className="w-6 h-6" />,
-        description: "Processed into new materials",
+        id: "virgin",
+        text: "Virgin-only",
+        icon: <img src="https://img.icons8.com/?size=35&id=41303&format=png&color=0000FF" alt="" />,
+        description: "Models products made entirely from virgin (new) raw materials without considering recycled content.",
       },
       {
-        id: "reuse",
-        text: "Reused",
+        id: "recycled",
+        text: "Recycled-only",
         icon: <RotateCcw className="w-6 h-6" />,
         description: "Used again for same purpose",
       },
       {
-        id: "landfill",
-        text: "Disposed",
-        icon: <Trash2 className="w-6 h-6" />,
+        id: "mix",
+        text: "Mix (user specifies %)",
+        icon: <img src="https://img.icons8.com/?size=35&id=Y0VQUEpYVgSf&format=png&color=0000FF" alt="" />,
         description: "Sent to landfill or waste",
       },
       {
@@ -167,6 +194,37 @@ const questions: Question[] = [
       },
     ],
   },
+  {
+    id: 5,
+    question: "How should missing values be handled?",
+    hint: "Decide how to treat incomplete data: ignore it, approximate with proxies, request user input, or let AI suggest values.",
+    options: [
+      {
+        id: "zero",
+        text: "Replace with 0",
+        icon: <img src="https://img.icons8.com/?size=35&id=116646&format=png&color=0000FF" alt="" />,
+        description: "Treats missing data as zero, leading to conservative underestimation of impacts but may oversimplify results.",
+      },
+      {
+        id: "proxy",
+        text: "Estimate using proxy process",
+        icon: <img src="https://img.icons8.com/?size=35&id=118397&format=png&color=0000FF" alt="" />,
+        description: "Fills missing data with a similar process as a proxy, providing approximate but less precise results.",
+      },
+      {
+        id: "manual",
+        text: "Ask user for manual input",
+        icon: <img src="https://img.icons8.com/?size=35&id=2722&format=png&color=0000FF" alt="" />,
+        description: "Prompts the user to provide missing values directly, ensuring accuracy but requiring more effort.",
+      },
+      {
+        id: "ai-decide",
+        text: "Let AI Decide",
+        icon: <Image src={ai} alt="AI" width={24} height={24} className="object-contain" />,
+        description: "AI will analyze and choose the best approach",
+      },
+    ],
+  }
 ]
 
 export default function NonExpertMode() {
@@ -174,10 +232,17 @@ export default function NonExpertMode() {
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showHint, setShowHint] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
+  const [showManualInput, setShowManualInput] = useState(false)
+  const [manualInputText, setManualInputText] = useState("")
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
   const handleAnswer = (optionId: string) => {
+    if (optionId === "manual") {
+      setShowManualInput(true)
+      return
+    }
+
     const newAnswers = { ...answers, [questions[currentQuestion].id]: optionId }
     setAnswers(newAnswers)
 
@@ -198,8 +263,29 @@ export default function NonExpertMode() {
     }, 500)
   }
 
+  const handleManualInputSubmit = () => {
+    if (manualInputText.trim()) {
+      const newAnswers = { ...answers, [questions[currentQuestion].id]: `manual: ${manualInputText}` }
+      setAnswers(newAnswers)
+      setShowManualInput(false)
+      setManualInputText("")
+      
+      setTimeout(() => {
+        if (currentQuestion < questions.length - 1) {
+          setCurrentQuestion(currentQuestion + 1)
+          setShowHint(false)
+        } else {
+          setIsComplete(true)
+        }
+      }, 500)
+    }
+  }
+
   const goBack = () => {
-    if (currentQuestion > 0) {
+    if (showManualInput) {
+      setShowManualInput(false)
+      setManualInputText("")
+    } else if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1)
       setShowHint(false)
     }
@@ -379,6 +465,42 @@ export default function NonExpertMode() {
                     </Card>
                   ))}
                 </div>
+
+                {/* Manual Input Modal */}
+                {showManualInput && (
+                  <div className="mb-8">
+                    <Card className="p-6 bg-blue-50 border-2 border-blue-200 rounded-xl">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                        Please provide your manual input:
+                      </h3>
+                      <textarea
+                        value={manualInputText}
+                        onChange={(e) => setManualInputText(e.target.value)}
+                        placeholder="Enter your input here..."
+                        className="w-full h-32 p-4 border border-slate-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                      <div className="flex justify-end space-x-3 mt-4">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setShowManualInput(false)
+                            setManualInputText("")
+                          }}
+                          className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          onClick={handleManualInputSubmit}
+                          disabled={!manualInputText.trim()}
+                          className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          Submit
+                        </Button>
+                      </div>
+                    </Card>
+                  </div>
+                )}
 
                 {/* Navigation */}
                 <div className="flex justify-between items-center pt-6 border-t border-slate-200">
