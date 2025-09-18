@@ -193,9 +193,9 @@ const Index = () => {
               <Link href="/expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
                 <Card className="h-full p-8 glass-card interactive-scale hover:scale-105 transition-all duration-300 border-2 border-secondary-300/30 hover:border-secondary-300/60 bg-gradient-to-br from-secondary-500/10 to-secondary-600/5 hover:from-secondary-400/15 hover:to-secondary-500/10 group">
                   <div className="text-center">
-                      <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                        <div className="flex justify-center items-center">
-                          <img src="https://img.icons8.com/?size=100&id=dJmZPAqp4mxA&format=png&color=FFFFFF" alt="" />
+                      <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                        <div className="flex justify-center items-center bg-gradient-to-br from-[#006E88] to-[#00AE99] shadow-lg w-24 h-24 rounded-2xl">
+                          <img src="https://img.icons8.com/?size=60&id=dJmZPAqp4mxA&format=png&color=FFFFFF" alt="" />
                         </div>
                       </div>
                     <div className="inline-block px-4 py-1 bg-secondary-200/20 rounded-full text-secondary-100 text-sm font-medium mb-4">
@@ -222,8 +222,14 @@ const Index = () => {
                         <div className="w-2 h-2 bg-secondary-300 rounded-full"></div>
                         <span style={{ color: 'oklch(.45 .02 240)' }}>Detailed outputs</span>
                       </div>
-                    </div>
-                    <Button size="lg" variant="outline" className="border-2 border-white/80 text-white hover:bg-white/10 hover:border-white w-full font-semibold backdrop-blur-sm hover:backdrop-blur-md transition-all duration-300">
+                    </div >
+                    <Button size="lg" variant="outline" className="w-full font-semibold rounded-lg bg-white
+                        bg-clip-text text-transparent 
+                        bg-gradient-to-br from-[#006E88] to-[#00AE99]
+                        border-2 border-[#006E88] hover:border-[#00AE99]
+                        transition-all duration-300 flex items-center justify-center
+                        hover:bg-gradient-to-br hover:from-[#006E88] hover:to-[#00AE99] hover:text-white hover:bg-clip-border
+                      ">
                       Advanced Analysis
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
@@ -233,7 +239,7 @@ const Index = () => {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
               <div className="text-center animate-bounce">
                 <div className="text-3xl font-bold text-white" style={{ color: 'oklch(.15 .02 240)' }}>99.7%</div>
                 <div className="text-white/70" style={{ color: 'oklch(.45 .02 240)' }}>Accuracy Rate</div>
@@ -246,7 +252,7 @@ const Index = () => {
                 <div className="text-3xl font-bold text-white" style={{ color: 'oklch(.15 .02 240)' }}>50+</div>
                 <div className="text-white/70" style={{ color: 'oklch(.45 .02 240)' }}>Metal Types</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -264,7 +270,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="p-8 interactive-scale">
               <div className="p-4 bg-primary/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 w-16 h-16 rounded-2xl">
                   <img src="https://img.icons8.com/?size=50&id=ym8y5bBPBfO0&format=png&color=FFFFFF" alt="" />
                 </div>
               </div>
@@ -277,7 +283,7 @@ const Index = () => {
 
             <Card className="p-8 interactive-scale">
               <div className="p-4 bg-primary/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center bg-gradient-to-br from-[#006E88] to-[#00AE99] w-16 h-16 rounded-2xl">
                   <img src="https://img.icons8.com/?size=50&id=MDTDX4RNrPQ0&format=png&color=FFFFFF" alt="" />
                 </div>
               </div>
@@ -290,7 +296,7 @@ const Index = () => {
 
             <Card className="p-8 interactive-scale">
               <div className="p-4 bg-accent/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center  bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 w-16 h-16 rounded-2xl">
                   <img src="https://img.icons8.com/?size=50&id=DoB2hWAWiTer&format=png&color=FFFFFF" alt="" />
                 </div>
               </div>
@@ -398,13 +404,19 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/non-expert">
-                <Button size="lg" className="bg-gradient-sustainability text-white px-8">
-                  <img src="https://img.icons8.com/?size=25&id=112358&format=png&color=FFFFFF" alt="" />  <span style={{ color: 'oklch(.15 .02 240)' }}>Start Free Assessment</span>
+                <Button size="lg" className="bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 text-white px-8">
+                  <img src="https://img.icons8.com/?size=25&id=112358&format=png&color=FFFFFF " alt="" />  <span style={{ color: 'oklch(.15 .02 240)' }}>Start Free Assessment</span>
                 </Button>
               </Link>
               <Link href="/expert"> 
-                <Button size="lg" variant="outline" className="px-8">
-                  <img src="https://img.icons8.com/?size=20&id=dJmZPAqp4mxA&format=png&color=FFFFFF" alt="" /> <span style={{ color: 'oklch(.15 .02 240)' }}>Try Expert Mode</span>
+                <Button size="lg" variant="outline" className="px-8 font-semibold rounded-lg bg-white
+                        bg-clip-text text-transparent 
+                        bg-gradient-to-br from-[#006E88] to-[#00AE99]
+                        border-2 border-[#006E88] hover:border-[#00AE99]
+                        transition-all duration-300 flex items-center justify-center
+                        hover:bg-gradient-to-br hover:from-[#006E88] hover:to-[#00AE99] hover:text-white hover:bg-clip-border
+                      ">
+                  <img src="https://img.icons8.com/?size=20&id=dJmZPAqp4mxA&format=png&color=000000" alt="" /> <span style={{ color: 'oklch(.15 .02 240)' }}>Try Expert Mode</span>
                 </Button>
               </Link>
             </div>
