@@ -1,0 +1,246 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  /* Base colors - Sophisticated Greyscale with Warm Undertones */
+  --background: oklch(0.99 0.008 120);
+  --foreground: oklch(0.12 0.015 240);
+  --card: oklch(0.98 0.012 140);
+  --card-foreground: oklch(0.14 0.018 240);
+  --popover: oklch(0.99 0.008 120);
+  --popover-foreground: oklch(0.12 0.015 240);
+  
+  /* Primary - Deep Forest Green with Blue Undertones */
+  --primary: oklch(0.35 0.15 165);
+  --primary-foreground: oklch(0.98 0.008 120);
+  
+  /* Secondary - Warm Sage Green */
+  --secondary: oklch(0.65 0.12 145);
+  --secondary-foreground: oklch(0.12 0.015 240);
+  
+  /* Muted - Soft Grey-Green */
+  --muted: oklch(0.94 0.015 140);
+  --muted-foreground: oklch(0.48 0.025 200);
+  
+  /* Accent - Vibrant Teal */
+  --accent: oklch(0.55 0.18 185);
+  --accent-foreground: oklch(0.98 0.008 120);
+  
+  /* Destructive - Warm Red */
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0.008 120);
+  
+  /* Borders and Inputs */
+  --border: oklch(0.87 0.015 140);
+  --input: oklch(0.98 0.012 140);
+  --ring: oklch(0.35 0.15 165 / 0.3);
+  
+  /* Chart Colors - Earth Tones */
+  --chart-1: oklch(0.35 0.15 165);  /* Deep Forest */
+  --chart-2: oklch(0.65 0.12 145);  /* Sage Green */
+  --chart-3: oklch(0.55 0.18 185);  /* Teal */
+  --chart-4: oklch(0.45 0.16 125);  /* Olive */
+  --chart-5: oklch(0.38 0.12 205);  /* Deep Blue-Green */
+  
+  /* Radius */
+  --radius: 0.75rem;
+  
+  /* Sidebar */
+  --sidebar: oklch(0.97 0.012 140);
+  --sidebar-foreground: oklch(0.14 0.018 240);
+  --sidebar-primary: oklch(0.35 0.15 165);
+  --sidebar-primary-foreground: oklch(0.98 0.008 120);
+  --sidebar-accent: oklch(0.65 0.12 145);
+  --sidebar-accent-foreground: oklch(0.12 0.015 240);
+  --sidebar-border: oklch(0.87 0.015 140);
+  --sidebar-ring: oklch(0.35 0.15 165 / 0.3);
+}
+
+.dark {
+  /* Dark mode with deep, rich backgrounds and high contrast */
+  --background: oklch(0.08 0.015 240);
+  --foreground: oklch(0.95 0.012 180);
+  --card: oklch(0.10 0.018 235);
+  --card-foreground: oklch(0.94 0.015 175);
+  --popover: oklch(0.08 0.015 240);
+  --popover-foreground: oklch(0.95 0.012 180);
+  
+  /* Primary - Bright Emerald with subtle glow */
+  --primary: oklch(0.70 0.20 165);
+  --primary-foreground: oklch(0.08 0.015 240);
+  
+  /* Secondary - Soft Mint Green */
+  --secondary: oklch(0.75 0.18 155);
+  --secondary-foreground: oklch(0.08 0.015 240);
+  
+  /* Muted - Sophisticated Grey-Blue */
+  --muted: oklch(0.15 0.020 235);
+  --muted-foreground: oklch(0.65 0.025 190);
+  
+  /* Accent - Vibrant Cyan */
+  --accent: oklch(0.80 0.22 185);
+  --accent-foreground: oklch(0.08 0.015 240);
+  
+  /* Destructive - Warm Coral */
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.95 0.012 180);
+  
+  /* Borders and Inputs */
+  --border: oklch(0.20 0.025 235);
+  --input: oklch(0.10 0.018 235);
+  --ring: oklch(0.70 0.20 165 / 0.4);
+  
+  /* Chart Colors - Vibrant but harmonious */
+  --chart-1: oklch(0.70 0.20 165);  /* Emerald */
+  --chart-2: oklch(0.75 0.18 155);  /* Mint */
+  --chart-3: oklch(0.80 0.22 185);  /* Cyan */
+  --chart-4: oklch(0.72 0.18 135);  /* Sage */
+  --chart-5: oklch(0.68 0.16 205);  /* Blue-Green */
+  
+  /* Sidebar - Enhanced depth */
+  --sidebar: oklch(0.10 0.018 235);
+  --sidebar-foreground: oklch(0.94 0.015 175);
+  --sidebar-primary: oklch(0.70 0.20 165);
+  --sidebar-primary-foreground: oklch(0.08 0.015 240);
+  --sidebar-accent: oklch(0.75 0.18 155);
+  --sidebar-accent-foreground: oklch(0.08 0.015 240);
+  --sidebar-border: oklch(0.20 0.025 235);
+  --sidebar-ring: oklch(0.70 0.20 165 / 0.4);
+}
+
+* {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring) / 0.5);
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  .gradient-sustainability {
+    background: linear-gradient(
+      135deg,
+      oklch(0.35 0.15 165) 0%,    /* Deep Forest Green */
+      oklch(0.45 0.16 155) 25%,   /* Rich Pine */
+      oklch(0.55 0.18 185) 50%,   /* Emerald Teal */
+      oklch(0.65 0.12 145) 75%,   /* Sage Green */
+      oklch(0.45 0.16 125) 100%   /* Olive Green */
+    );
+  }
+
+  .gradient-sustainability-subtle {
+    background: linear-gradient(
+      135deg, 
+      oklch(0.97 0.012 165) 0%, 
+      oklch(0.96 0.015 155) 25%,
+      oklch(0.95 0.018 185) 50%, 
+      oklch(0.96 0.012 145) 75%,
+      oklch(0.97 0.010 125) 100%
+    );
+  }
+
+  .gradient-mesh {
+    background: 
+      radial-gradient(circle at 20% 80%, oklch(0.35 0.15 165 / 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, oklch(0.55 0.18 185 / 0.10) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, oklch(0.65 0.12 145 / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 60% 80%, oklch(0.45 0.16 125 / 0.06) 0%, transparent 50%),
+      linear-gradient(135deg, oklch(0.99 0.008 165), oklch(0.98 0.012 155));
+  }
+
+  .gradient-card-overlay {
+    background: linear-gradient(
+      135deg, 
+      oklch(0.98 0.008 165 / 0.85) 0%, 
+      oklch(0.97 0.012 175 / 0.90) 50%,
+      oklch(0.98 0.010 155 / 0.85) 100%
+    );
+    backdrop-filter: blur(24px) saturate(1.2);
+    border: 1px solid oklch(0.87 0.015 165 / 0.4);
+    box-shadow: 
+      0 8px 32px oklch(0.35 0.15 165 / 0.08),
+      0 4px 16px oklch(0.55 0.18 185 / 0.04);
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+.dark .gradient-mesh {
+  background: 
+    radial-gradient(circle at 20% 80%, oklch(0.70 0.20 165 / 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, oklch(0.80 0.22 185 / 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, oklch(0.75 0.18 155 / 0.10) 0%, transparent 50%),
+    radial-gradient(circle at 60% 80%, oklch(0.72 0.18 135 / 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, oklch(0.08 0.015 240), oklch(0.10 0.018 235));
+}
+
+.dark .gradient-card-overlay {
+  background: linear-gradient(
+    135deg, 
+    oklch(0.10 0.018 235 / 0.85) 0%, 
+    oklch(0.12 0.020 240 / 0.90) 50%,
+    oklch(0.10 0.015 230 / 0.85) 100%
+  );
+  backdrop-filter: blur(28px) saturate(1.3);
+  border: 1px solid oklch(0.20 0.025 235 / 0.4);
+  box-shadow: 
+    0 12px 40px oklch(0.70 0.20 165 / 0.12),
+    0 6px 20px oklch(0.80 0.22 185 / 0.08);
+}
