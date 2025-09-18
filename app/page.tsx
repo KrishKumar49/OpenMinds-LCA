@@ -1,484 +1,437 @@
 "use client"
+import Image from "next/image"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card-homepage"
+import { Badge } from "@/components/ui/badge-home"
+import { Target, User, Recycle, Zap, Globe, ArrowRight, CheckCircle, BarChart3, Shield, Users } from "lucide-react"
+import Link from "next/link"
+import lca from "../public/LCA-graphic_version-2.webp"
 
-// import Image from "next/image";
+// Import Google Fonts
+import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
 
-// export default function Home() {
-//   return (
-//     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-//       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-//         <Image
-//           className="dark:invert"
-//           src="/next.svg"
-//           alt="Next.js logo"
-//           width={180}
-//           height={38}
-//           priority
-//         />
-//         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-//           <li className="mb-2 tracking-[-.01em]">
-//             Get started by editing{" "}
-//             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-//               app/page.tsx
-//             </code>
-//             .
-//           </li>
-//           <li className="tracking-[-.01em]">
-//             Save and see your changes instantly.
-//           </li>
-//         </ol>
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+})
 
-//         <div className="flex gap-4 items-center flex-col sm:flex-row">
-//           <a
-//             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-//             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               className="dark:invert"
-//               src="/vercel.svg"
-//               alt="Vercel logomark"
-//               width={20}
-//               height={20}
-//             />
-//             Deploy now
-//           </a>
-//           <a
-//             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-//             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Read our docs
-//           </a>
-//         </div>
-//       </main>
-//       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/file.svg"
-//             alt="File icon"
-//             width={16}
-//             height={16}
-//           />
-//           Learn
-//         </a>
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/window.svg"
-//             alt="Window icon"
-//             width={16}
-//             height={16}
-//           />
-//           Examples
-//         </a>
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/globe.svg"
-//             alt="Globe icon"
-//             width={16}
-//             height={16}
-//           />
-//           Go to nextjs.org →
-//         </a>
-//       </footer>
-//     </div>
-//   );
-// }
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700'],
+  display: 'swap',
+})
 
+const didactGothic = Didact_Gothic({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
 
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
 
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
 
+export default function HomePage() {
+  const [hoveredMode, setHoveredMode] = useState<string | null>(null)
 
+  const scrollToAssessmentMode = () => {
+    const element = document.getElementById('assessment-mode-section')
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card-homepage";
-import { Navbar } from "@/components/navbar";
-import { ArrowRight, Target, Users, BarChart3, Sparkles, Mail} from "lucide-react";
-import Link from "next/link";
-
-const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-hero py-20 lg:py-32">
-        {/* Floating Metal Icons */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 text-6xl opacity-20 float">🔩</div>
-          <div className="absolute top-40 right-20 text-5xl opacity-15 float-delayed">🟠</div>
-          <div className="absolute bottom-20 left-20 text-7xl opacity-10 float">⚙️</div>
-          <div className="absolute bottom-40 right-10 text-4xl opacity-25 float-delayed">⚫</div>
-        </div>
-
-        <div className="container mx-auto px-6 text-center relative">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 mb-6 animate-fade-in-up">
-              Professional LCA{" "}
-              <div style={{ color: 'oklch(.15 .02 240)' }}>
-                for Circular Metals
-              </div>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <div style={{ color: 'oklch(.45 .02 240)' }}>
-              Enterprise-grade life cycle assessment platform powered by artificial intelligence. Drive sustainable metallurgy decisions with precision analytics and comprehensive impact modeling.
-              </div>
-            </p>
-
-            {/* Mode Selection Buttons */}
-            <div className="flex flex-col lg:flex-row gap-8 justify-center items-stretch mb-16 max-w-5xl mx-auto">
-              <Link href="/non-expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                <Card className="h-full p-8 glass-card interactive-scale hover:scale-105 transition-all duration-300 border-2 border-primary-300/30 hover:border-primary-300/60 bg-gradient-to-br from-primary-500/10 to-primary-600/5 hover:from-primary-400/15 hover:to-primary-500/10 group">
-                  <div className="text-center">
-                    <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center">
-                      <div className="flex justify-center items-center bg-gradient-to-br from-teal-600 via-emerald-500 to-lime-400 shadow-lg w-24 h-24 rounded-2xl">
-                        <img src="https://img.icons8.com/?size=60&id=112358&format=png&color=FFFFFF" alt="" className="w-12 h-12" />
-                      </div>
-                    </div>
-                    <div className="inline-block px-4 py-1 bg-primary-200/20 rounded-full text-primary-100 text-sm font-medium mb-4">
-                      Beginner Friendly
-                    </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">
-                      <div style={{ color: 'oklch(.15 .02 240)' }}>Non-Expert Mode</div>
-                      </h3>
-                    <p className="text-white/85 mb-6 text-lg leading-relaxed">
-                      <div style={{ color: 'oklch(.45 .02 240)' }}>
-                        Guided Q&A flow with AI assistance. Perfect for newcomers to LCA analysis with intelligent recommendations.
-                      </div>
-                    </p>
-                    <div className="space-y-3 text-white/70 text-sm mb-6">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>20 guided questions</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>AI recommendations</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-primary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>5-10 minutes</span>
-                      </div>
-                    </div>
-                    <Button size="lg" className="bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 
-             text-white font-semibold shadow-lg 
-             hover:opacity-90 
-             w-full transition-all duration-300 rounded-lg">
-                      Start Assessment
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </div>
-                </Card>
-              </Link>
-
-              <Link href="/expert" className="flex-1 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                <Card className="h-full p-8 glass-card interactive-scale hover:scale-105 transition-all duration-300 border-2 border-secondary-300/30 hover:border-secondary-300/60 bg-gradient-to-br from-secondary-500/10 to-secondary-600/5 hover:from-secondary-400/15 hover:to-secondary-500/10 group">
-                  <div className="text-center">
-                      <div className="text-7xl mb-6 transform group-hover:scale-110 transition-transform duration-300 flex justify-center">
-                        <div className="flex justify-center items-center bg-gradient-to-br from-[#006E88] to-[#00AE99] shadow-lg w-24 h-24 rounded-2xl">
-                          <img src="https://img.icons8.com/?size=60&id=dJmZPAqp4mxA&format=png&color=FFFFFF" alt="" />
-                        </div>
-                      </div>
-                    <div className="inline-block px-4 py-1 bg-secondary-200/20 rounded-full text-secondary-100 text-sm font-medium mb-4">
-                      Advanced Control
-                    </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">
-                      <div style={{ color: 'oklch(.15 .02 240)' }}>Expert Mode</div>
-                    </h3>
-                    <p className="text-white/85 mb-6 text-lg leading-relaxed">
-                      <div style={{ color: 'oklch(.45 .02 240)' }}>
-                        Advanced technical interface with comprehensive data controls and detailed visualization capabilities.
-                      </div>
-                    </p>
-                    <div className="space-y-3 text-white/70 text-sm mb-6">
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-secondary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>Advanced parameters</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-secondary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>Custom scenarios</span>
-                      </div>
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-2 h-2 bg-secondary-300 rounded-full"></div>
-                        <span style={{ color: 'oklch(.45 .02 240)' }}>Detailed outputs</span>
-                      </div>
-                    </div >
-                    <Button size="lg" variant="outline" className="w-full font-semibold rounded-lg bg-white
-                        bg-clip-text text-transparent 
-                        bg-gradient-to-br from-[#006E88] to-[#00AE99]
-                        border-2 border-[#006E88] hover:border-[#00AE99]
-                        transition-all duration-300 flex items-center justify-center
-                        hover:bg-gradient-to-br hover:from-[#006E88] hover:to-[#00AE99] hover:text-white hover:bg-clip-border
-                      ">
-                      Advanced Analysis
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </div>
-                </Card>
+    <div className="min-h-screen bg-slate-50">
+      <header className="border-b border-slate-200 bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-200/50">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
+                <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shadow-sm">
+                  <Recycle className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-2xl font-bold text-slate-900">OpenMines</span>
               </Link>
             </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
+                Home
+              </Link>
+              <Link href="/features" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
+                Features
+              </Link>
+              <Link href="/history" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
+                History
+              </Link>
+              <Link href="/about" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
+                About Us
+              </Link>
+              <Button 
+                size="sm" 
+                className={`ml-2 mr-3 px-6 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold border border-green-500 shadow-lg shadow-green-600/25 hover:shadow-xl hover:shadow-green-600/40 transition-all duration-300 transform hover:scale-105 rounded-lg ${merriweather.className}`}
+              >
+                LOGIN
+              </Button>
+            </div>
+          </nav>
+        </div>
+        {/* Gradient shadow overlay */}
+        <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-b from-transparent to-slate-200/30 pointer-events-none"></div>
+      </header>
 
-            {/* Quick Stats */}
-            {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-              <div className="text-center animate-bounce">
-                <div className="text-3xl font-bold text-white" style={{ color: 'oklch(.15 .02 240)' }}>99.7%</div>
-                <div className="text-white/70" style={{ color: 'oklch(.45 .02 240)' }}>Accuracy Rate</div>
+      <main>
+        <section className="relative py-8 lg:py-12 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-slate-50 to-blue-50"></div>
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-4xl mx-auto text-center">
+              <Badge 
+                variant="secondary" 
+                className={`mb-6 px-6 py-3 text-sm font-semibold bg-green-100 text-green-800 border-green-200 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 ${oswald.className}`}
+              >
+                Leading the Future of LCA Software
+              </Badge>
+              <h1 className="text-5xl lg:text-7xl font-bold mb-8 text-balance leading-tight">
+                <span className="text-slate-900">Professional</span>
+                <br />
+                <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                  LCA Assessment
+                </span>
+              </h1>
+              <p className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto text-pretty leading-relaxed">
+                OpenMines is a professional Life Cycle Assessment (LCA) tool. Reliable, high-performance,
+                modular tool for sustainability assessment & life cycle modelling. Open Source and customizable.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg" 
+                  className="h-14 px-8 text-lg bg-green-600 hover:bg-green-700 text-white"
+                  onClick={scrollToAssessmentMode}
+                >
+                  Get Started Today
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+                  View Documentation
+                </Button>
               </div>
-              <div className="text-center animate-bounce" style={{ animationDelay: '0.2s' }}>
-                <div className="text-3xl font-bold text-white" style={{ color: 'oklch(.15 .02 240)' }}>&lt; 2s</div>
-                <div className="text-white/70" style={{ color: 'oklch(.45 .02 240)' }}>Analysis Time</div>
+            </div>
+          </div>
+        </section>
+
+    <section className="py-20 bg-slate-100">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className={`text-4xl lg:text-5xl font-bold mb-6 text-slate-800 ${cinzel.className}`}>
+                What is LCA?
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8 rounded-full"></div>
+            </div>
+
+            <div className="max-w-6xl mx-auto">
+              {/* Main Definition Card */}
+              <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 p-8 lg:p-12 mb-12 border border-slate-200/50">
+                <div className="flex flex-col lg:flex-row items-center gap-8">
+                  <div className="lg:w-1/3">
+                    <div className="relative">
+                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/30">
+                        <Recycle className="w-16 h-16 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-yellow-900 font-bold text-sm">✓</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lg:w-2/3">
+                    <p className={`text-lg lg:text-xl text-slate-700 leading-relaxed`}>
+                      <span className="font-semibold text-green-700">Life Cycle Assessment (LCA)</span> evaluates a product's entire journey from raw material extraction and manufacturing to use, recycling, or disposal. It measures overall environmental impact, including energy use, emissions, water consumption, waste, and effects on ecosystems and human health.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="text-center animate-bounce" style={{ animationDelay: '0.4s' }}>
-                <div className="text-3xl font-bold text-white" style={{ color: 'oklch(.15 .02 240)' }}>50+</div>
-                <div className="text-white/70" style={{ color: 'oklch(.45 .02 240)' }}>Metal Types</div>
+
+              {/* LCA Stages Flow */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {[
+                  {
+                    icon: "🏭",
+                    title: "Raw Materials",
+                    desc: "Extraction & Processing",
+                    color: "from-amber-500 to-orange-500",
+                    bgColor: "bg-amber-50",
+                    borderColor: "border-amber-200"
+                  },
+                  {
+                    icon: "🔧",
+                    title: "Manufacturing",
+                    desc: "Production & Assembly",
+                    color: "from-blue-500 to-indigo-500",
+                    bgColor: "bg-blue-50",
+                    borderColor: "border-blue-200"
+                  },
+                  {
+                    icon: "🚚",
+                    title: "Distribution",
+                    desc: "Transport & Logistics",
+                    color: "from-purple-500 to-pink-500",
+                    bgColor: "bg-purple-50",
+                    borderColor: "border-purple-200"
+                  },
+                  {
+                    icon: "♻️",
+                    title: "End of Life",
+                    desc: "Recycling & Disposal",
+                    color: "from-green-500 to-teal-500",
+                    bgColor: "bg-green-50",
+                    borderColor: "border-green-200"
+                  }
+                ].map((stage, index) => (
+                  <div key={index} className={`relative ${stage.bgColor} ${stage.borderColor} border-2 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}>
+                    <div className="text-4xl mb-3">{stage.icon}</div>
+                    <h4 className={`text-lg font-bold text-slate-800 mb-2 ${oswald.className}`}>{stage.title}</h4>
+                    <p className="text-sm text-slate-600">{stage.desc}</p>
+                    {index < 3 && (
+                      <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-6 transform -translate-y-1/2">
+                        <ArrowRight className="w-4 h-4 text-slate-400" />
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="assessment-mode-section" className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-6 text-slate-900">Choose Your Assessment Mode</h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                Whether you're new to LCA or an experienced practitioner, we have the right tools for your needs.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card
+                className={`p-8 cursor-pointer transition-all duration-300 hover:shadow-lg border bg-white ${
+                  hoveredMode === "non-expert"
+                    ? "border-blue-300 shadow-lg"
+                    : "border-slate-200 hover:border-blue-200"
+                }`}
+                onMouseEnter={() => setHoveredMode("non-expert")}
+                onMouseLeave={() => setHoveredMode(null)}
+              >
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-blue-600 flex items-center justify-center">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900">Guided Assessment</h3>
+                  <p className="text-slate-600 mb-8 leading-relaxed">
+                    Step-by-step guidance with AI recommendations. Perfect for teams new to sustainability assessment.
+                  </p>
+                  <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white" asChild>
+                    <Link href="/non-expert">Start Assessment</Link>
+                  </Button>
+                </div>
+              </Card>
+
+              <Card
+                className={`p-8 cursor-pointer transition-all duration-300 hover:shadow-lg border bg-white ${
+                  hoveredMode === "expert" ? "border-green-300 shadow-lg" : "border-slate-200 hover:border-green-200"
+                }`}
+                onMouseEnter={() => setHoveredMode("expert")}
+                onMouseLeave={() => setHoveredMode(null)}
+              >
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-green-600 flex items-center justify-center">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-slate-900">Expert Analysis</h3>
+                  <p className="text-slate-600 mb-8 leading-relaxed">
+                    Advanced interface with comprehensive data controls and detailed visualization capabilities.
+                  </p>
+                  <Button size="lg" variant="outline" className="w-full bg-white border-slate-300 text-slate-700 hover:bg-slate-50" asChild>
+                    <Link href="/expert">Advanced Analysis</Link>
+                  </Button>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-slate-100">
+          <div className="container mx-auto px-4">
+
+            <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <Card className="p-8 text-center hover:shadow-lg transition-all duration-300 bg-white border-slate-200">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-green-600 flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-3xl font-bold mb-4 text-slate-900">Powerful</h4>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                   Powerful and intuitive. Unparalleled features. Open source and free to use. CircularLCA is the world's
+                  most widely used LCA software.
+                </p>
+                <div className="flex items-center justify-center space-x-2 text-sm text-slate-600">
+                  {/* <CheckCircle className="w-4 h-4 text-green-600" /> */}
+                  {/* <span>Open Source and free to use</span> */}
+                </div>
+              </Card>
+
+              <Card className="p-8 text-center hover:shadow-lg transition-all duration-300 bg-white border-slate-200">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-blue-600 flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-3xl font-bold mb-4 text-slate-900">Open Source</h4>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  Full transparency, full flexibility. Freely share both the software and any models you create in
+                  OpenMines. Modify and change the software to suit your needs.
+                </p>
+                <div className="flex items-center justify-center space-x-2 text-sm text-slate-600">
+                  {/* <CheckCircle className="w-4 h-4 text-blue-600" /> */}
+                  {/* <span>Enterprise-ready solution</span> */}
+                </div>
+              </Card>
+
+              <Card className="p-8 text-center hover:shadow-lg transition-all duration-300 bg-white border-slate-200">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-teal-600 flex items-center justify-center">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-3xl font-bold mb-4 text-slate-900">Connected</h4>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  Stay connected and work together on LCA models from anywhere in the world using the Open LCA
+                  Collaboration Server and OpenMines.
+                </p>
+                <div className="flex items-center justify-center space-x-2 text-sm text-slate-600">
+                  {/* <CheckCircle className="w-4 h-4 text-teal-600" /> */}
+                  {/* <span>Available for free</span> */}
+                </div>
+              </Card>
+            </div>
+
+            {/* <div className="text-center mt-12">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">Browse Software</Button>
             </div> */}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Preview */}
-      <section className="py-10 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: 'oklch(.15 .02 240)' }}>Why Choose Our LCA Tool?</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto" style={{ color: 'oklch(.45 .02 240)' }}>
-              Built specifically for the metallurgy industry with AI-powered insights and circular economy focus.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 interactive-scale">
-              <div className="p-4 bg-primary/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 w-16 h-16 rounded-2xl">
-                  <img src="https://img.icons8.com/?size=50&id=ym8y5bBPBfO0&format=png&color=FFFFFF" alt="" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-4" style={{ color: 'oklch(.15 .02 240)' }}>AI-Powered Analysis</h3>
-              <p className="text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                Advanced machine learning algorithms provide intelligent insights and recommendations 
-                for optimizing your metallurgical processes.
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-6 text-slate-900">A Tool For Everyone</h2>
+              <p className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
+                From researchers to industry professionals, CircularLCA provides the tools you need for comprehensive
+                life cycle assessment and sustainable decision making.
               </p>
-            </Card>
-
-            <Card className="p-8 interactive-scale">
-              <div className="p-4 bg-primary/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center bg-gradient-to-br from-[#006E88] to-[#00AE99] w-16 h-16 rounded-2xl">
-                  <img src="https://img.icons8.com/?size=50&id=MDTDX4RNrPQ0&format=png&color=FFFFFF" alt="" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-4" style={{ color: 'oklch(.15 .02 240)' }}>Circular Economy</h3>
-              <p className="text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                Compare linear vs circular models to understand environmental impact 
-                and identify opportunities for sustainable practices.
-              </p>
-            </Card>
-
-            <Card className="p-8 interactive-scale">
-              <div className="p-4 bg-accent/10 rounded-lg w-fit mb-4">
-                <div className="flex justify-center items-center  bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 w-16 h-16 rounded-2xl">
-                  <img src="https://img.icons8.com/?size=50&id=DoB2hWAWiTer&format=png&color=FFFFFF" alt="" />
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-4" style={{ color: 'oklch(.15 .02 240)' }}>Interactive Visualizations</h3>
-              <p className="text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                Beautiful, interactive charts and 3D visualizations make complex 
-                sustainability data easy to understand and present.
-              </p>
-            </Card>
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/features">
-              <Button size="lg" variant="outline" className="px-8" style={{ color: 'oklch(.15 .02 240)' }}>
-                Explore All Features
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-      
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <Card className="p-12 text-center bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 border-primary/20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'oklch(.15 .02 240)' }}>
-              A Tool For Everyone
-            </h2>
-            <p className="text-sm text-muted-foreground mb-8 max-w-2xl mx-auto" style={{ color: 'oklch(.45 .02 240)' }}>
-              All products, all standards, widest choice of data and methods.
-            </p>
-            <div className="border-t border-b border-gray-300 py-6 flex items-start gap-7 max-w-4xl mx-auto">
-              {/* Left Label */}
-              <span className="text-2xl text-white font-bold  py-1" style={{ color: 'oklch(.15 .02 240)' }}>
-                Industry
-              </span>
-
-              {/* Right Text */}
-              <p className="text-base text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                With low total cost of ownership, easy installation and use, features for professional
-                modeling and for collaboration in team, the largest set of data available for LCA, and not
-                the least full transparency, OpenMinds is a good choice for use in industry. OpenMinds is also
-                suited as basis for customised software solution, for powerful and intuitive web- or
-                desktop applications.
-              </p>
-            </div>
-
-            <div className="border-t border-b border-gray-300 py-6 flex items-start gap-7 max-w-4xl mx-auto">
-              {/* Left Label */}
-              <span className="text-2xl text-white font-bold  py-1" style={{ color: 'oklch(.15 .02 240)' }}>
-                Consultancy
-              </span>
-
-              {/* Right Text */}
-              <p className="text-base text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                As for industry, low total cost of ownership, easy installation and use, features for professional modeling and for collaboration in team, and the largest set of data available for LCA make OpenMinds a good choice for LCA and footprint in consultancy. Since the software is free, it is very easy to share your life cycle model with clients, or for review and quality assurance
-              </p>
-            </div>
-
-
-
-            <div className="border-t border-b border-gray-300 py-6 flex items-start gap-7 max-w-4xl mx-auto">
-              {/* Left Label */}
-              <span className="text-2xl text-white font-bold  py-1" style={{ color: 'oklch(.15 .02 240)' }}>
-                Research
-              </span>
-
-              {/* Right Text */}
-              <p className="text-base text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                OpenMinds provides features and possibilities not available in other LCA software and can be extended to meet and include specific new approaches. At the same time, OpenMinds is a user-friendly software, with an intuitive interface that is well suited for research.
-              </p>
-            </div>
-
-
-            <div className="border-t border-b border-gray-300 py-6 flex items-start gap-7 max-w-4xl mx-auto">
-              {/* Left Label */}
-              <span className="text-2xl text-white font-bold  py-1" style={{ color: 'oklch(.15 .02 240)' }}>
-                Education
-              </span>
-
-              {/* Right Text */}
-              <p className="text-base text-muted-foreground leading-relaxed" style={{ color: 'oklch(.45 .02 240)' }}>
-                OpenMinds is used in many university classes worldwide, also linked to research. Easy installation, affordable or free faculty licences offered by many databases, and rich modeling options are reasons to select OpenMinds for student work and teaching classes.
-              </p>
-            </div>
-
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <Card className="p-12 text-center bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 border-primary/20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'oklch(.15 .02 240)' }}>
-              Ready to Transform Your Sustainability Analysis?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" style={{ color: 'oklch(.45 .02 240)' }}>
-              Join the revolution in metallurgical sustainability assessment. 
-              Start your first LCA analysis in under 2 minutes.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/non-expert">
-                <Button size="lg" className="bg-gradient-to-r from-teal-700 via-green-600 to-emerald-500 text-white px-8">
-                  <img src="https://img.icons8.com/?size=25&id=112358&format=png&color=FFFFFF " alt="" />  <span style={{ color: 'oklch(.15 .02 240)' }}>Start Free Assessment</span>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="h-14 px-8 text-lg bg-green-600 hover:bg-green-700 text-white">
+                  Get Started Today
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-              </Link>
-              <Link href="/expert"> 
-                <Button size="lg" variant="outline" className="px-8 font-semibold rounded-lg bg-white
-                        bg-clip-text text-transparent 
-                        bg-gradient-to-br from-[#006E88] to-[#00AE99]
-                        border-2 border-[#006E88] hover:border-[#00AE99]
-                        transition-all duration-300 flex items-center justify-center
-                        hover:bg-gradient-to-br hover:from-[#006E88] hover:to-[#00AE99] hover:text-white hover:bg-clip-border
-                      ">
-                  <img src="https://img.icons8.com/?size=20&id=dJmZPAqp4mxA&format=png&color=000000" alt="" /> <span style={{ color: 'oklch(.15 .02 240)' }}>Try Expert Mode</span>
+                <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+                  View Documentation
                 </Button>
-              </Link>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-muted/50 py-12">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-sustainability rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">AI</span>
-                </div>
-                <span className="text-xl font-bold text-gradient-primary" style={{ color: 'oklch(.15 .02 240)' }}>LCA Tool</span>
-              </div>
-              <p className="text-muted-foreground text-sm" style={{ color: 'oklch(.45 .02 240)' }}>
-                AI-powered Life Cycle Assessment for sustainable metallurgy and circular economy.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3" style={{ color: 'oklch(.15 .02 240)' }}>Product</h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/features" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Features</Link>
-                <Link href="/non-expert" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Non-Expert Mode</Link>
-                <Link href="/expert" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Expert Mode</Link>
-                <Link href="/dashboard" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Dashboard</Link>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3" style={{ color: 'oklch(.15 .02 240)' }}>Company</h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/about" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>About Us</Link>
-                <Link href="/history" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>History</Link>
-                <a href="#" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Contact</a>
-                <a href="#" className="text-muted-foreground hover:text-foreground block" style={{ color: 'oklch(.45 .02 240)' }}>Privacy</a>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3" style={{ color: 'oklch(.15 .02 240)' }}>Connect</h4>
-              <div className="flex gap-3">
-                <Button variant="ghost" size="sm" className="p-2">
-                  <Mail className="w-4 h-4" /> <span style={{ color: 'oklch(.45 .02 240)' }}>Email</span>
-                </Button>
-
               </div>
             </div>
           </div>
-          
-          <div className="border-t pt-8 text-center text-sm text-muted-foreground">
-            <p style={{ color: 'oklch(.45 .02 240)' }}>&copy; 2024 AI LCA Tool. All rights reserved. Built for sustainable metallurgy.</p>
+        </section>
+      </main>
+
+      <footer className="border-t border-slate-200 bg-slate-100">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-6 h-6 rounded bg-green-600 flex items-center justify-center">
+                  <Recycle className="w-4 h-4 text-white" />
+                </div>
+                <span className="font-bold text-slate-900">CircularLCA</span>
+              </div>
+              <p className="text-sm text-slate-600">
+                Leading the future of LCA software with professional, open-source solutions.
+              </p>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-3 text-slate-900">Product</h5>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li>
+                  <Link href="/features" className="hover:text-green-600 transition-colors">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pricing" className="hover:text-green-600 transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/documentation" className="hover:text-green-600 transition-colors">
+                    Documentation
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-3 text-slate-900">Company</h5>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li>
+                  <Link href="/about" className="hover:text-green-600 transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/team" className="hover:text-green-600 transition-colors">
+                    Team
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/careers" className="hover:text-green-600 transition-colors">
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-semibold mb-3 text-slate-900">Support</h5>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li>
+                  <Link href="/help" className="hover:text-green-600 transition-colors">
+                    Help Center
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="hover:text-green-600 transition-colors">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/community" className="hover:text-green-600 transition-colors">
+                    Community
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-slate-300 mt-8 pt-8 text-center text-sm text-slate-600">
+            <p>&copy; 2024 CircularLCA. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-  );
-};
-
-export default Index;
-
+  )
+}

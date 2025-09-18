@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/buttonDashboard"
 import { Card } from "@/components/ui/cardDashboard"
 import { Download, Recycle, Globe, TrendingUp, TrendingDown, BarChart3, Activity, Search, Bell, Settings, User, MoreHorizontal, Calendar, ArrowRight, RotateCcw, Trash2, Factory } from 'lucide-react'
 import Link from "next/link"
+import Image from "next/image"
 import {
   PieChart as RechartsPieChart,
   Cell,
@@ -72,7 +73,7 @@ export default function Dashboard() {
   const [selectedMetal] = useState("aluminum")
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <div className="flex">
         {/* Sidebar Navigation */}
         <div className="w-64 bg-gradient-to-b from-green-800 to-green-900 text-white min-h-screen">
@@ -161,31 +162,31 @@ export default function Dashboard() {
         {/* Main Content */}
         <div className="flex-1">
           {/* Header */}
-          <header className="bg-white border-b border-gray-200 px-6 py-4">
+          <header className="bg-white border-b border-slate-200 px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+                <div className="flex items-center space-x-2 text-sm text-slate-600">
                   <Calendar className="w-4 h-4" />
                   <span>January 2024 - May 2024</span>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <div className="relative">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                   <input
                     type="text"
                     placeholder="Search anything in CircularLCA..."
-                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white text-slate-900"
                   />
                 </div>
-                <Button variant="outline" size="sm">
+                <Button className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 p-2">
                   <Bell className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 p-2">
                   <Settings className="w-4 h-4" />
                 </Button>
-                <Button className="bg-green-600 hover:bg-green-700">Add new assessment</Button>
+                <Button className="bg-green-600 hover:bg-green-700 text-white">Add new assessment</Button>
               </div>
             </div>
           </header>
@@ -194,7 +195,7 @@ export default function Dashboard() {
           <div className="p-6">
             {/* Top Metrics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className="p-6 bg-gradient-to-br from-green-600 to-green-700 text-white">
+              <Card className="p-6 bg-gradient-to-br from-green-600 to-green-700 text-white border-green-600">
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
                     <TrendingUp className="w-4 h-4" />
@@ -204,30 +205,30 @@ export default function Dashboard() {
                 <p className="text-sm text-green-100 mb-2">Feb 12th 2024</p>
                 <h3 className="text-lg font-semibold mb-1">Circularity increased</h3>
                 <p className="text-2xl font-bold mb-2">40% in 1 week</p>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-0">
+                <Button className="bg-transparent hover:bg-white/20 text-white p-0 h-auto font-normal">
                   See Statistics →
                 </Button>
               </Card>
 
-              <Card className="p-6">
+              <Card className="p-6 bg-white border border-slate-200">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">Net Impact</h3>
-                  <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                  <h3 className="font-semibold text-slate-900">Net Impact</h3>
+                  <MoreHorizontal className="w-4 h-4 text-slate-400" />
                 </div>
-                <p className="text-3xl font-bold text-gray-900 mb-2">4.2</p>
+                <p className="text-3xl font-bold text-slate-900 mb-2">4.2</p>
                 <div className="flex items-center space-x-2">
                   <TrendingDown className="w-4 h-4 text-green-600" />
                   <span className="text-sm text-green-600">+35% from last month</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">kg CO₂ eq</p>
+                <p className="text-xs text-slate-500 mt-1">kg CO₂ eq</p>
               </Card>
 
-              <Card className="p-6">
+              <Card className="p-6 bg-white border border-slate-200">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">Total Recyclability</h3>
-                  <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                  <h3 className="font-semibold text-slate-900">Total Recyclability</h3>
+                  <MoreHorizontal className="w-4 h-4 text-slate-400" />
                 </div>
-                <p className="text-3xl font-bold text-gray-900 mb-2">89%</p>
+                <p className="text-3xl font-bold text-slate-900 mb-2">89%</p>
                 <div className="flex items-center space-x-2">
                   <TrendingUp className="w-4 h-4 text-green-600" />
                   <span className="text-sm text-green-600">+24% from last month</span>
@@ -242,10 +243,10 @@ export default function Dashboard() {
                 {/* Top Section - Inputs & Circularity */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Material Inputs Pie Chart */}
-                  <Card className="p-6">
+                  <Card className="p-6 bg-white border border-slate-200">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-semibold text-gray-900">Material Inputs</h3>
-                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                      <h3 className="font-semibold text-slate-900">Material Inputs</h3>
+                      <MoreHorizontal className="w-4 h-4 text-slate-400" />
                     </div>
                     <div className="h-48">
                       <ResponsiveContainer width="100%" height="100%">
@@ -271,7 +272,7 @@ export default function Dashboard() {
                       {inputsData.map((item, index) => (
                         <div key={index} className="flex items-center space-x-2">
                           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-slate-600">
                             {item.name}: {item.value}%
                           </span>
                         </div>
@@ -280,17 +281,17 @@ export default function Dashboard() {
                   </Card>
 
                   {/* Recyclability Potential Gauge */}
-                  <Card className="p-6">
+                  <Card className="p-6 bg-white border border-slate-200">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-semibold text-gray-900">Recyclability Potential</h3>
-                      <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                      <h3 className="font-semibold text-slate-900">Recyclability Potential</h3>
+                      <MoreHorizontal className="w-4 h-4 text-slate-400" />
                     </div>
                     <div className="h-48 flex items-center justify-center">
                       <div className="relative">
-                        <div className="w-32 h-32 rounded-full border-8 border-gray-200 flex items-center justify-center">
+                        <div className="w-32 h-32 rounded-full border-8 border-slate-200 flex items-center justify-center">
                           <div className="text-center">
                             <div className="text-3xl font-bold text-green-600">89%</div>
-                            <div className="text-sm text-gray-500">Recyclable</div>
+                            <div className="text-sm text-slate-500">Recyclable</div>
                           </div>
                         </div>
                         <div
@@ -300,16 +301,16 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <div className="text-center mt-4">
-                      <p className="text-sm text-gray-600">High recyclability potential</p>
+                      <p className="text-sm text-slate-600">High recyclability potential</p>
                     </div>
                   </Card>
                 </div>
 
                 {/* TRACI Impact Categories Bar Chart */}
-                <Card className="p-6">
+                <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-gray-900">TRACI Impact Categories</h3>
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <h3 className="font-semibold text-slate-900">TRACI Impact Categories</h3>
+                    <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
@@ -338,10 +339,10 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Contribution Analysis Stacked Bar Chart */}
-                <Card className="p-6">
+                <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-gray-900">Contribution Analysis</h3>
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <h3 className="font-semibold text-slate-900">Contribution Analysis</h3>
+                    <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
@@ -366,23 +367,27 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Material Flow Visualization with Photos and Scenarios */}
-                <Card className="p-6">
+                <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-semibold text-gray-900">Material Flow Visualization</h3>
+                    <h3 className="font-semibold text-slate-900">Material Flow Visualization</h3>
                     <div className="flex items-center space-x-2">
                       <Button
-                        variant={scenario === "linear" ? "default" : "outline"}
-                        size="sm"
+                        className={`${
+                          scenario === "linear" 
+                            ? "bg-red-600 hover:bg-red-700 text-white" 
+                            : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                        } px-3 py-1 text-sm`}
                         onClick={() => setScenario("linear")}
-                        className={scenario === "linear" ? "bg-red-600 hover:bg-red-700" : ""}
                       >
                         Linear
                       </Button>
                       <Button
-                        variant={scenario === "circular" ? "default" : "outline"}
-                        size="sm"
+                        className={`${
+                          scenario === "circular" 
+                            ? "bg-green-600 hover:bg-green-700 text-white" 
+                            : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                        } px-3 py-1 text-sm`}
                         onClick={() => setScenario("circular")}
-                        className={scenario === "circular" ? "bg-green-600 hover:bg-green-700" : ""}
                       >
                         Circular
                       </Button>
@@ -391,39 +396,41 @@ export default function Dashboard() {
 
                   {/* Material Photos */}
                   <div className="mb-8">
-                    <h4 className="text-sm font-medium text-gray-700 mb-4">Materials in Analysis</h4>
+                    <h4 className="text-sm font-medium text-slate-700 mb-4">Materials in Analysis</h4>
                     <div className="grid grid-cols-4 gap-4">
                       <div className="text-center">
-                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-gray-100 border-2 border-blue-200">
-                          <img src="/aluminum-ingots-metallic-silver.jpg" alt="Aluminum" className="w-full h-full object-cover" />
+                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-slate-100 border-2 border-blue-200">
+                          <Image src="/aluminum-ingots-metallic-silver.jpg" alt="Aluminum" width={80} height={80} className="w-full h-full object-cover" />
                         </div>
-                        <p className="text-xs font-medium text-gray-700">Aluminum</p>
-                        <p className="text-xs text-gray-500">65% recycled</p>
+                        <p className="text-xs font-medium text-slate-700">Aluminum</p>
+                        <p className="text-xs text-slate-500">65% recycled</p>
                       </div>
                       <div className="text-center">
-                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-300">
-                          <img src="/steel-bars-metallic-gray.jpg" alt="Steel" className="w-full h-full object-cover" />
+                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-slate-100 border-2 border-slate-300">
+                          <Image src="/steel-bars-metallic-gray.jpg" alt="Steel" width={80} height={80} className="w-full h-full object-cover" />
                         </div>
-                        <p className="text-xs font-medium text-gray-700">Steel</p>
-                        <p className="text-xs text-gray-500">45% recycled</p>
+                        <p className="text-xs font-medium text-slate-700">Steel</p>
+                        <p className="text-xs text-slate-500">45% recycled</p>
                       </div>
                       <div className="text-center">
-                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-gray-100 border-2 border-orange-200">
-                          <img src="/copper-plumbing.png" alt="Copper" className="w-full h-full object-cover" />
+                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-slate-100 border-2 border-orange-200">
+                          <Image src="/copper-plumbing.png" alt="Copper" width={80} height={80} className="w-full h-full object-cover" />
                         </div>
-                        <p className="text-xs font-medium text-gray-700">Copper</p>
-                        <p className="text-xs text-gray-500">78% recycled</p>
+                        <p className="text-xs font-medium text-slate-700">Copper</p>
+                        <p className="text-xs text-slate-500">78% recycled</p>
                       </div>
                       <div className="text-center">
-                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-gray-100 border-2 border-purple-200">
-                          <img
+                        <div className="w-20 h-20 mx-auto mb-2 rounded-lg overflow-hidden bg-slate-100 border-2 border-purple-200">
+                          <Image
                             src="/mixed-metals-alloy-components.jpg"
                             alt="Other Metals"
+                            width={80}
+                            height={80}
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <p className="text-xs font-medium text-gray-700">Other</p>
-                        <p className="text-xs text-gray-500">32% recycled</p>
+                        <p className="text-xs font-medium text-slate-700">Other</p>
+                        <p className="text-xs text-slate-500">32% recycled</p>
                       </div>
                     </div>
                   </div>
@@ -593,10 +600,10 @@ export default function Dashboard() {
               {/* Right Column */}
               <div className="space-y-6">
                 {/* Multi-Impact Radar Chart */}
-                <Card className="p-6">
+                <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-gray-900">Multi-Impact Profile</h3>
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <h3 className="font-semibold text-slate-900">Multi-Impact Profile</h3>
+                    <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
@@ -613,48 +620,48 @@ export default function Dashboard() {
                   <div className="flex justify-center space-x-4 mt-4">
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full bg-green-500" />
-                      <span className="text-sm text-gray-600">Current</span>
+                      <span className="text-sm text-slate-600">Current</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-3 rounded-full bg-red-500" />
-                      <span className="text-sm text-gray-600">Baseline</span>
+                      <span className="text-sm text-slate-600">Baseline</span>
                     </div>
                   </div>
                 </Card>
 
                 {/* Virgin vs Recycled Comparison */}
-                <Card className="p-6">
+                <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-gray-900">Virgin vs Recycled</h3>
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                    <h3 className="font-semibold text-slate-900">Virgin vs Recycled</h3>
+                    <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
                   <div className="space-y-4">
                     {comparisonData.map((item, index) => (
                       <div key={index}>
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium text-gray-700">{item.category}</span>
+                          <span className="text-sm font-medium text-slate-700">{item.category}</span>
                           <span className="text-sm font-bold text-green-600">-{item.saving}%</span>
                         </div>
                         <div className="flex space-x-2">
                           <div className="flex-1">
-                            <div className="text-xs text-gray-500 mb-1">Virgin</div>
+                            <div className="text-xs text-slate-500 mb-1">Virgin</div>
                             <div className="h-2 bg-red-200 rounded">
                               <div
                                 className="h-2 bg-red-500 rounded"
                                 style={{ width: `${(item.virgin / Math.max(item.virgin, item.recycled)) * 100}%` }}
                               />
                             </div>
-                            <div className="text-xs text-gray-600 mt-1">{item.virgin}</div>
+                            <div className="text-xs text-slate-600 mt-1">{item.virgin}</div>
                           </div>
                           <div className="flex-1">
-                            <div className="text-xs text-gray-500 mb-1">Recycled</div>
+                            <div className="text-xs text-slate-500 mb-1">Recycled</div>
                             <div className="h-2 bg-green-200 rounded">
                               <div
                                 className="h-2 bg-green-500 rounded"
                                 style={{ width: `${(item.recycled / Math.max(item.virgin, item.recycled)) * 100}%` }}
                               />
                             </div>
-                            <div className="text-xs text-gray-600 mt-1">{item.recycled}</div>
+                            <div className="text-xs text-slate-600 mt-1">{item.recycled}</div>
                           </div>
                         </div>
                       </div>
@@ -668,13 +675,13 @@ export default function Dashboard() {
                     <div className="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-2xl flex items-center justify-center">
                       <Recycle className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">
                       Level up your LCA analysis to the next level.
                     </h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-slate-600 mb-4">
                       An easy way to manage sustainability with care and precision.
                     </p>
-                    <Button className="w-full bg-green-600 hover:bg-green-700">Upgrade to CircularLCA+</Button>
+                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">Upgrade to CircularLCA+</Button>
                   </div>
                 </Card>
               </div>

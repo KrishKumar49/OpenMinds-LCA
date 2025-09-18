@@ -209,7 +209,7 @@ export default function NonExpertMode() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 flex items-center justify-center p-6">
         <div className="max-w-lg w-full">
-          <Card className="p-8 text-center bg-white shadow-xl border-0">
+          <Card className="p-8 text-center bg-white shadow-xl border border-slate-200 rounded-xl">
             <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500 flex items-center justify-center">
               <CheckCircle className="w-8 h-8 text-white" />
             </div>
@@ -221,7 +221,7 @@ export default function NonExpertMode() {
               <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white" asChild>
                 <Link href="/Dashboard">View Your Results</Link>
               </Button>
-              <Button size="lg" variant="outline" className="w-full bg-transparent" asChild>
+              <Button size="lg" variant="outline" className="w-full bg-white border-slate-300 text-slate-700 hover:bg-slate-50" asChild>
                 <Link href="/">
                   <Home className="w-4 h-4 mr-2" />
                   Back to Home
@@ -248,7 +248,7 @@ export default function NonExpertMode() {
               <ArrowLeft className="w-4 h-4" />
               <span className="font-medium">Back to Home</span>
             </Link>
-            <Badge className="bg-green-100 text-green-800 border-green-200 px-3 py-1">Guided Assessment</Badge>
+            <Badge className="bg-green-100 text-green-800 border-green-200 px-3 py-1 rounded-full">Guided Assessment</Badge>
           </div>
         </div>
       </header>
@@ -272,7 +272,7 @@ export default function NonExpertMode() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* AI Assistant Panel */}
             <div className="lg:col-span-1">
-              <Card className="p-6 bg-white shadow-lg border-0 sticky top-28">
+              <Card className="p-6 bg-white shadow-lg border border-slate-200 rounded-xl sticky top-28">
                 <div className="text-center mb-6">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-blue-100 flex items-center justify-center">
                     <Image src={ai} alt="AI Assistant" width={32} height={32} className="object-contain" />
@@ -281,7 +281,12 @@ export default function NonExpertMode() {
                   <p className="text-xs text-slate-500 mt-1">Ready to help</p>
                 </div>
 
-                <Button variant="outline" size="sm" onClick={() => setShowHint(!showHint)} className="w-full mb-4">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setShowHint(!showHint)} 
+                  className="w-full mb-4 bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                >
                   <Lightbulb className="w-4 h-4 mr-2" />
                   {showHint ? "Hide Hint" : "Need Help?"}
                 </Button>
@@ -320,13 +325,13 @@ export default function NonExpertMode() {
 
             {/* Question Panel */}
             <div className="lg:col-span-2">
-              <Card className="p-8 bg-white shadow-xl border-0">
+              <Card className="p-8 bg-white shadow-xl border border-slate-200 rounded-xl">
                 <div className="mb-8">
                   <div className="flex items-center space-x-3 mb-6">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-600 to-green-600 flex items-center justify-center text-white font-bold text-sm">
                       {currentQuestion + 1}
                     </div>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-xs bg-white border-slate-300 text-slate-700">
                       Step {currentQuestion + 1}
                     </Badge>
                   </div>
@@ -337,7 +342,7 @@ export default function NonExpertMode() {
                   {question.options.map((option) => (
                     <Card
                       key={option.id}
-                      className={`p-6 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1 border-2 group ${
+                      className={`p-6 cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1 border-2 group rounded-lg ${
                         option.id === "ai-decide"
                           ? "border-purple-200 hover:border-purple-400 bg-gradient-to-br from-purple-50 to-indigo-50"
                           : "border-slate-200 hover:border-blue-400 bg-white"
@@ -381,7 +386,7 @@ export default function NonExpertMode() {
                     variant="outline"
                     onClick={goBack}
                     disabled={currentQuestion === 0}
-                    className="flex items-center space-x-2 bg-transparent"
+                    className="flex items-center space-x-2 bg-white border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Previous</span>
