@@ -6,7 +6,8 @@ import { Card } from "@/components/ui/card-homepage"
 import { Badge } from "@/components/ui/badge-home"
 import { Target, User, Recycle, Zap, Globe, ArrowRight, CheckCircle, BarChart3, Shield, Users } from "lucide-react"
 import Link from "next/link"
-import lca from "../public/LCA-graphic_version-2.webp"
+import lca from "../public/lca design.jpg"
+import logo from "../public/WhatsApp Image 2025-09-18 at 23.40.23_65c59c7b.jpg"
 
 // Import Google Fonts
 import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
@@ -62,9 +63,15 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
-                <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shadow-sm">
-                  <Recycle className="w-6 h-6 text-white" />
+              <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200">
+                <div className="w-12 h-12 flex items-center justify-center mb-1">
+                  <Image 
+                    src={logo} 
+                    alt="OpenMines Logo" 
+                    className="w-12 h-12 object-cover"
+                    width={64}
+                    height={48}
+                  />
                 </div>
                 <span className="text-2xl font-bold text-slate-900">OpenMines</span>
               </Link>
@@ -149,8 +156,14 @@ export default function HomePage() {
                 <div className="flex flex-col lg:flex-row items-center gap-8">
                   <div className="lg:w-1/3">
                     <div className="relative">
-                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/30">
-                        <Recycle className="w-16 h-16 text-white" />
+                      <div className="w-90 h-54 mx-auto bg-white rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-300/50 border border-slate-200">
+                        <Image 
+                          src={lca} 
+                          alt="LCA Process Diagram" 
+                          className="w-full h-full object-contain rounded-2xl"
+                          width={256}
+                          height={192}
+                        />
                       </div>
                       <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
                         <span className="text-yellow-900 font-bold text-sm">✓</span>
@@ -220,7 +233,7 @@ export default function HomePage() {
         <section id="assessment-mode-section" className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6 text-slate-900">Choose Your Assessment Mode</h2>
+              <h2 className={`text-4xl font-bold mb-6 text-slate-900 ${merriweather.className}`}>Choose Your Assessment Mode</h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                 Whether you're new to LCA or an experienced practitioner, we have the right tools for your needs.
               </p>
@@ -240,11 +253,11 @@ export default function HomePage() {
                   <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-blue-600 flex items-center justify-center">
                     <Target className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-slate-900">Guided Assessment</h3>
+                  <h3 className={`text-2xl font-bold mb-4 text-slate-900 ${merriweather.className}`}>Guided Assessment</h3>
                   <p className="text-slate-600 mb-8 leading-relaxed">
                     Step-by-step guidance with AI recommendations. Perfect for teams new to sustainability assessment.
                   </p>
-                  <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white" asChild>
+                  <Button size="lg" className={`w-full bg-blue-600 hover:bg-blue-700 text-white ${merriweather.className}`} asChild>
                     <Link href="/non-expert">Start Assessment</Link>
                   </Button>
                 </div>
@@ -261,11 +274,11 @@ export default function HomePage() {
                   <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-green-600 flex items-center justify-center">
                     <User className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-slate-900">Expert Analysis</h3>
+                  <h3 className={`text-2xl font-bold mb-4 text-slate-900 ${merriweather.className}`}>Expert Analysis</h3>
                   <p className="text-slate-600 mb-8 leading-relaxed">
                     Advanced interface with comprehensive data controls and detailed visualization capabilities.
                   </p>
-                  <Button size="lg" variant="outline" className="w-full bg-white border-slate-300 text-slate-700 hover:bg-slate-50" asChild>
+                  <Button size="lg" variant="outline" className={`w-full bg-green-600 text-white border-slate-300 hover:bg-slate-50 ${merriweather.className}`} asChild>
                     <Link href="/expert">Advanced Analysis</Link>
                   </Button>
                 </div>
@@ -343,7 +356,7 @@ export default function HomePage() {
                   Get Started Today
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
+                <Button size="lg" variant="outline" className="h-14 px-8 text-lg bg-zinc-100 font-bold border-slate-300 text-slate-700 hover:bg-slate-50 border-2">
                   View Documentation
                 </Button>
               </div>
@@ -353,41 +366,47 @@ export default function HomePage() {
       </main>
 
       <footer className="border-t border-slate-200 bg-slate-100">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-10 py-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-6 h-6 rounded bg-green-600 flex items-center justify-center">
-                  <Recycle className="w-4 h-4 text-white" />
+                <div className="w-8 h-8 flex items-center justify-center">
+                  <Image 
+                    src={logo} 
+                    alt="OpenMines Logo" 
+                    className="w-10 h-10 object-cover rounded"
+                    width={32}
+                    height={32}
+                  />
                 </div>
-                <span className="font-bold text-slate-900">CircularLCA</span>
+                <span className="font-bold text-slate-900 text-2xl">OpenMines</span>
               </div>
               <p className="text-sm text-slate-600">
                 Leading the future of LCA software with professional, open-source solutions.
               </p>
             </div>
             <div>
-              <h5 className="font-semibold mb-3 text-slate-900">Product</h5>
+              <h5 className={`font-extrabold mb-3 text-slate-900 ml-3 ${cinzel.className}`}>Project</h5>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li>
-                  <Link href="/features" className="hover:text-green-600 transition-colors">
+                  <Link href="/features" className="hover:text-green-600 ml-3 transition-colors">
                     Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pricing" className="hover:text-green-600 transition-colors">
-                    Pricing
+                  <Link href="/pricing" className="hover:text-green-600 ml-3 transition-colors">
+                    Github
                   </Link>
                 </li>
                 <li>
-                  <Link href="/documentation" className="hover:text-green-600 transition-colors">
+                  <Link href="/documentation" className="hover:text-green-600 ml-3 transition-colors">
                     Documentation
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold mb-3 text-slate-900">Company</h5>
+              <h5 className={`font-extrabold mb-3 text-slate-900 ${cinzel.className}`}>Organization</h5>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li>
                   <Link href="/about" className="hover:text-green-600 transition-colors">
@@ -401,22 +420,22 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="/careers" className="hover:text-green-600 transition-colors">
-                    Careers
+                    Socials
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold mb-3 text-slate-900">Support</h5>
+              <h5 className={`font-extrabold mb-3 text-slate-900 ${cinzel.className}`}>Support</h5>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li>
                   <Link href="/help" className="hover:text-green-600 transition-colors">
-                    Help Center
+                    Feedback
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="hover:text-green-600 transition-colors">
-                    Contact
+                    Contact Us
                   </Link>
                 </li>
                 <li>
@@ -426,9 +445,6 @@ export default function HomePage() {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="border-t border-slate-300 mt-8 pt-8 text-center text-sm text-slate-600">
-            <p>&copy; 2024 CircularLCA. All rights reserved.</p>
           </div>
         </div>
       </footer>
