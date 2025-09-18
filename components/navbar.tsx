@@ -27,10 +27,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-sustainability rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">AI</span>
+            <div className="w-16 h-16 bg-gradient-sustainability rounded-2xl flex items-center justify-center">
+              <span className="text-white font-bold">
+                <img src="/icon/Screenshot 2025-09-18 123354.png" alt="OpenMinds Logo" className="w-12 h-12 rounded-lg" />
+              </span>
             </div>
-            <span className="text-xl font-bold text-gradient-primary">LCA Tool</span>
+            <span className="text-xl font-bold text-gradient-primary">OpenMinds</span>
           </Link>
 
           {/* Desktop Navigation */}
