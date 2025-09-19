@@ -1,8 +1,45 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Recycle, BarChart3, Activity, Database, FileText, Settings, User } from "lucide-react"
+import { Recycle, BarChart3, Activity, Database, FileText, Settings, User, History } from "lucide-react"
+import logo from "../../public/WhatsApp Image 2025-09-18 at 23.40.23_65c59c7b.jpg"
+
+// Import Google Fonts
+import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+})
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const didactGothic = Didact_Gothic({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
 
 interface SidebarProps {
   className?: string
@@ -37,15 +74,15 @@ const menuItems = [
   {
     title: "GENERAL",
     items: [
-      {
-        href: "/settings",
-        icon: Settings,
-        label: "Settings",
-      },
-      {
+       {
         href: "/security",
         icon: User,
-        label: "Security",
+        label: "Profile",
+      },
+      {
+        href: "/history",
+        icon: History,
+        label: "History",
       },
     ],
   },
@@ -62,8 +99,14 @@ export function DashboardSidebar({ className }: SidebarProps) {
         {/* Brand Section */}
         <div className="flex items-center space-x-3 mb-8">
           <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden">
-              <Recycle className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white shadow">
+              <Image
+                src={logo}
+                alt="OpenMines Logo"
+                className="w-10 h-10 object-cover rounded-full"
+                width={40}
+                height={40}
+              />
             </div>
             <span className="text-2xl font-bold">OpenMines</span>
           </Link>
@@ -102,8 +145,8 @@ export function DashboardSidebar({ className }: SidebarProps) {
           <User className="w-5 h-5" />
         </div>
         <div>
-          <p className="text-sm font-medium">LCA Expert</p>
-          <p className="text-xs text-green-200">expert@circularlca.com</p>
+          <p className="text-sm font-medium">OpenMines</p>
+          <p className="text-xs text-green-200">openmines@gmail.com</p>
         </div>
       </div>
     </div>

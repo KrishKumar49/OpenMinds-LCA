@@ -212,7 +212,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="assessment-mode-section" className="py-20 bg-white">
+        <section id="assessment-mode-section" className="py-20 bg-gradient-to-b from-blue-50 via-green-50 to-blue-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className={`text-4xl font-bold mb-6 text-slate-900 ${merriweather.className}`}>Choose Your Assessment Mode</h2>

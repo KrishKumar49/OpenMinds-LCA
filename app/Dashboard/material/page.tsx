@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card-homepage"
-import { Badge } from "@/components/ui/badge-home"
+import { Button } from "@/components/expert ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/expert ui/card"
+import { Badge } from "@/components/expert ui/badge"
 import { Search, Bell, Settings, Calendar, Database } from "lucide-react"
 import { DashboardSidebar } from "@/components/dashboard-ui/dashboardsidebarFix"
 
@@ -27,8 +27,8 @@ export default function Materials() {
                   <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500" />
                   <input
                     type="text"
-                    placeholder="Search anything in CircularLCA..."
-                    className="pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
+                    placeholder="Search materials..."
+                    className="pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white text-slate-900"
                   />
                 </div>
                 <Button variant="outline" size="sm" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
@@ -37,7 +37,7 @@ export default function Materials() {
                 <Button variant="outline" size="sm" className="bg-white border-slate-300 text-slate-700 hover:bg-slate-50">
                   <Settings className="w-4 h-4" />
                 </Button>
-                <Button className="bg-green-600 text-white hover:bg-green-700">Add new assessment</Button>
+                <Button className="bg-green-600 text-white hover:bg-green-700">Add Material</Button>
               </div>
             </div>
           </header>

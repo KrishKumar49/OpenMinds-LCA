@@ -26,6 +26,43 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
+
+// Import Google Fonts
+import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+})
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const didactGothic = Didact_Gothic({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+
 interface Question {
   id: number
   question: string
@@ -378,7 +415,7 @@ export default function NonExpertMode() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="max-w-2xl mx-auto mb-12">
           <div className="text-center mb-6">
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">LCA Assessment</h1>
+            <h1 className={`text-3xl font-bold text-slate-900 mb-2 ${merriweather.className}`}>LCA Assessment</h1>
             <p className="text-slate-600">Answer a few questions to get your environmental impact analysis</p>
           </div>
           <div className="flex items-center justify-between mb-3">
@@ -450,7 +487,7 @@ export default function NonExpertMode() {
               <Card className="p-8 bg-white shadow-xl border border-slate-200 rounded-xl">
                 <div className="mb-8">
                   <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-600 to-green-600 flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-white font-bold text-sm">
                       {currentQuestion + 1}
                     </div>
                     <Badge variant="outline" className="text-xs bg-white border-slate-300 text-slate-700">
