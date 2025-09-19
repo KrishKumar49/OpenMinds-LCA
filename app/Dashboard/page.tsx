@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/cardDashboard"
 import { Download, Recycle, Globe, TrendingUp, TrendingDown, BarChart3, Activity, Search, Bell, Settings, User, MoreHorizontal, Calendar, ArrowRight, RotateCcw, Trash2, Factory } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
+import logo from "../../public/WhatsApp Image 2025-09-18 at 23.40.23_65c59c7b.jpg"
 import {
   PieChart as RechartsPieChart,
   Cell,
@@ -79,10 +80,18 @@ export default function Dashboard() {
         <div className="w-64 bg-gradient-to-b from-green-800 to-green-900 text-white min-h-screen">
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-8">
-              <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                <Recycle className="w-5 h-5" />
-              </div>
-              <span className="text-xl font-bold">CircularLCA</span>
+              <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden">
+                  <Image 
+                    src={logo} 
+                    alt="OpenMines Logo" 
+                    className="w-8 h-8 object-cover rounded-md"
+                    width={32}
+                    height={32}
+                  />
+                </div>
+                <span className="text-2xl font-bold">OpenMines</span>
+              </Link>
             </div>
 
             <div className="mb-8">
