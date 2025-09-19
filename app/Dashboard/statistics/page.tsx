@@ -11,6 +11,8 @@ import {
   Tooltip,
   BarChart,
   Bar,
+  LineChart,
+  Line,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
@@ -20,12 +22,12 @@ import {
 import { DashboardSidebar } from "@/components/dashboard-ui/dashboardsidebarFix"
 
 const traciImpactsData = [
-  { category: "Climate", impact: 30, originalValue: 4.2, unit: "kg CO₂ eq", displayValue: "4.2" },
-  { category: "Acidification", impact: 20, originalValue: 0.032, unit: "kg SO₂ eq", displayValue: "0.032" },
-  { category: "Eutrophication", impact: 15, originalValue: 0.018, unit: "kg PO₄ eq", displayValue: "0.018" },
-  { category: "Ozone", impact: 8, originalValue: 2.1e-7, unit: "kg CFC-11 eq", displayValue: "2.1×10⁻⁷" },
-  { category: "Smog", impact: 18, originalValue: 0.024, unit: "kg NOₓ eq", displayValue: "0.024" },
-  { category: "Health", impact: 12, originalValue: 1.8e-6, unit: "CTUh", displayValue: "1.8×10⁻⁶" },
+  { category: "Climate", impact: 36.58, originalValue: 0.3658, unit: "", displayValue: "0.3658 Kg CO₂ eq/Kg" },
+  { category: "Acidification", impact: 0.5, originalValue: 0.0005, unit: "", displayValue: `0.0005 SO₂ eq/kg`},
+  { category: "Eutrophication", impact: 0.1, originalValue: 0, unit: "", displayValue: "0 Kg PO₄ eq/Kg" },
+  { category: "Ozone", impact: 0.1, originalValue: 0, unit: "", displayValue: "0 Kg C₂H₄ eq/Kg" },
+  { category: "Photochemical", impact: 9.89, originalValue: 0.0989, unit: "", displayValue: "0.0989 Kg C₂H₄ eq/Kg" },
+  { category: "Health", impact: 3.54, originalValue: 0.0354, unit: "", displayValue: "0.0354 Kg PM10 eq/Kg" },
 ]
 
 const contributionData = [
@@ -100,18 +102,27 @@ export default function Statistics() {
                     <div className="relative">
                       <div className="w-32 h-32 rounded-full border-8 border-slate-200 flex items-center justify-center">
                         <div className="text-center">
-                          <div className="text-3xl font-bold text-green-600">89%</div>
+                          <div className="text-3xl font-bold text-green-600">20%</div>
                           <div className="text-sm text-slate-500">Recyclable</div>
                         </div>
                       </div>
-                      <div
-                        className="absolute top-0 left-0 w-32 h-32 rounded-full border-8 border-green-600 border-r-transparent border-b-transparent"
-                        style={{ transform: "rotate(45deg)" }}
-                      />
+                      <svg className="absolute top-0 left-0 w-32 h-32 transform -rotate-90">
+                        <circle
+                          cx="64"
+                          cy="64"
+                          r="56"
+                          stroke="#10b981"
+                          strokeWidth="8"
+                          fill="transparent"
+                          strokeDasharray={`${2 * Math.PI * 56 * 0.2} ${2 * Math.PI * 56 * 0.8}`}
+                          strokeLinecap="round"
+                          className="transition-all duration-1000 ease-out"
+                        />
+                      </svg>
                     </div>
                   </div>
                   <div className="text-center mt-4">
-                    <p className="text-sm text-slate-600">High recyclability potential</p>
+                    <p className="text-sm text-slate-600">low recyclability potential</p>
                   </div>
                 </Card>
 
@@ -151,9 +162,9 @@ export default function Statistics() {
                   </div>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart 
+                      <LineChart 
                         data={traciImpactsData}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                        margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                         <XAxis 
@@ -167,10 +178,11 @@ export default function Statistics() {
                         <YAxis
                           tick={{ fontSize: 12 }}
                           stroke="#6b7280"
-                          domain={[0, 35]}
+                          domain={[0, 40]}
+                          label={{ value: 'Impact × 100', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fontSize: '12px', fill: '#6b7280' } }}
                         />
                         <Tooltip
-                          formatter={(value, name, props) => [`${props.payload.displayValue} ${props.payload.unit}`, "Impact"]}
+                          formatter={(value, name, props) => [`${props.payload.displayValue}`, "Actual Impact"]}
                           contentStyle={{
                             backgroundColor: "white",
                             border: "1px solid #e5e7eb",
@@ -180,19 +192,20 @@ export default function Statistics() {
                           }}
                           labelStyle={{ color: "#374151", fontWeight: "500" }}
                         />
-                        <Bar 
+                        <Line 
+                          type="monotone"
                           dataKey="impact" 
-                          fill="#10b981" 
-                          radius={[4, 4, 0, 0]}
-                          stroke="#059669"
-                          strokeWidth={1}
+                          stroke="#10b981" 
+                          strokeWidth={3}
+                          dot={{ fill: "#10b981", strokeWidth: 2, r: 6 }}
+                          activeDot={{ r: 8, stroke: "#10b981", strokeWidth: 2, fill: "#ffffff" }}
                         />
-                      </BarChart>
+                      </LineChart>
                     </ResponsiveContainer>
                   </div>
                   <div className="mt-2">
                     <p className="text-xs text-slate-500 text-center">
-                      Note: Chart bars are scaled for visibility. Hover for actual values.
+                      Impact values scaled for visibility. Hover for actual values.
                     </p>
                   </div>
                 </Card>
@@ -215,7 +228,7 @@ export default function Statistics() {
                             <div className="h-2 bg-red-200 rounded">
                               <div
                                 className="h-2 bg-red-500 rounded"
-                                style={{ width: `${(item.virgin / Math.max(item.virgin, item.recycled)) * 100}%` }}
+                                style={{ width: `${(item.virgin / (item.virgin + item.recycled)) * 100}%` }}
                               />
                             </div>
                             <div className="text-xs text-slate-600 mt-1">{item.virgin}</div>
@@ -225,7 +238,7 @@ export default function Statistics() {
                             <div className="h-2 bg-green-200 rounded">
                               <div
                                 className="h-2 bg-green-500 rounded"
-                                style={{ width: `${(item.recycled / Math.max(item.virgin, item.recycled)) * 100}%` }}
+                                style={{ width: `${(item.recycled / (item.virgin + item.recycled)) * 100}%` }}
                               />
                             </div>
                             <div className="text-xs text-slate-600 mt-1">{item.recycled}</div>

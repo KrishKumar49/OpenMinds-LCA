@@ -164,24 +164,24 @@ export default function Dashboard() {
                     <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
                   <div className="mb-3">
-                    <p className="text-3xl font-bold text-slate-900 mb-1">89%</p>
+                    <p className="text-3xl font-bold text-slate-900 mb-1">20%</p>
                     <p className="text-sm text-slate-600 mb-3">Material Recovery Rate</p>
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-slate-500">Previous Period</span>
-                      <span className="text-xs font-medium text-slate-700">72%</span>
+                      <span className="text-xs font-medium text-slate-700">17%</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-slate-500">Growth</span>
                       <div className="flex items-center space-x-1">
                         <TrendingUp className="w-3 h-3 text-green-600" />
-                        <span className="text-xs font-medium text-green-600">+24% increase</span>
+                        <span className="text-xs font-medium text-green-600">+3% increase</span>
                       </div>
                     </div>
                     <div className="mt-3 pt-2 border-t border-slate-100">
                       <div className="w-full bg-slate-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '89%' }}></div>
+                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '20%' }}></div>
                       </div>
                     </div>
                   </div>
