@@ -8,6 +8,7 @@ import { Target, User, Recycle, Zap, Globe, ArrowRight, CheckCircle, BarChart3, 
 import Link from "next/link"
 import lca from "../public/lca design.jpg"
 import logo from "../public/WhatsApp Image 2025-09-18 at 23.40.23_65c59c7b.jpg"
+import Header from "@/components/header"
 
 // Import Google Fonts
 import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
@@ -59,48 +60,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="border-b border-slate-200 bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-lg shadow-200/50">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200">
-                <div className="w-12 h-12 flex items-center justify-center mb-1">
-                  <Image 
-                    src={logo} 
-                    alt="OpenMines Logo" 
-                    className="w-12 h-12 object-cover"
-                    width={64}
-                    height={48}
-                  />
-                </div>
-                <span className="text-2xl font-bold text-slate-900">OpenMines</span>
-              </Link>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
-                Home
-              </Link>
-              <Link href="/features" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
-                Features
-              </Link>
-              <Link href="/history" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
-                History
-              </Link>
-              <Link href="/about" className={`text-slate-700 hover:text-green-600 transition-colors font-bold ${merriweather.className}`}>
-                About Us
-              </Link>
-              <Button 
-                size="sm" 
-                className={`ml-2 mr-3 px-6 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold border border-green-500 shadow-lg shadow-green-600/25 hover:shadow-xl hover:shadow-green-600/40 transition-all duration-300 transform hover:scale-105 rounded-lg ${merriweather.className}`}
-              >
-                LOGIN
-              </Button>
-            </div>
-          </nav>
-        </div>
-        {/* Gradient shadow overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-4 bg-gradient-to-b from-transparent to-slate-200/30 pointer-events-none"></div>
-      </header>
+      <Header />
 
       <main>
         <section className="relative py-8 lg:py-12 overflow-hidden">
@@ -141,7 +101,7 @@ export default function HomePage() {
           </div>
         </section>
 
-    <section className="py-20 bg-slate-100">
+    <section className="py-10 bg-slate-100">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className={`text-4xl lg:text-5xl font-bold mb-6 text-slate-800 ${cinzel.className}`}>
@@ -150,39 +110,59 @@ export default function HomePage() {
               <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto mb-8 rounded-full"></div>
             </div>
 
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               {/* Main Definition Card */}
-              <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 p-8 lg:p-12 mb-12 border border-slate-200/50">
-                <div className="flex flex-col lg:flex-row items-center gap-8">
-                  <div className="lg:w-1/3">
-                    <div className="relative">
-                      <div className="w-90 h-54 mx-auto bg-white rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-300/50 border border-slate-200">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/50 p-5 lg:p-6 mb-6 border border-slate-200/50">
+                {/* Text Content First */}
+                <div className="text-center mb-6">
+                  <p className={`text-base lg:text-lg text-slate-700 leading-relaxed max-w-2xl mx-auto text-justify ${merriweather.className}`}>
+                    <span className="font-bold text-green-700">Life Cycle Assessment (LCA)</span> evaluates a product's entire journey from raw material extraction and manufacturing to use, recycling, or disposal. It measures overall environmental impact, including energy use, emissions, water consumption, waste, and effects on ecosystems and human health.
+                  </p>
+                </div>
+                
+                {/* LCA Diagram Below */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-4 lg:p-5 border border-slate-200/50">
+                    <div className="text-center mb-4">
+                      <h3 className={`text-lg lg:text-xl font-bold text-slate-800 mb-2 ${oswald.className}`}>
+                        LCA Process Flow
+                      </h3>
+                      <div className="w-10 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 mx-auto rounded-full"></div>
+                    </div>
+                    
+                    <div className="relative max-w-2xl mx-auto">
+                      <div className="bg-white rounded-lg shadow-md shadow-slate-300/50 border border-slate-200 p-3 lg:p-4">
                         <Image 
                           src={lca} 
-                          alt="LCA Process Diagram" 
-                          className="w-full h-full object-contain rounded-2xl"
-                          width={256}
-                          height={192}
+                          alt="LCA Process Diagram showing the complete lifecycle assessment flow" 
+                          className="w-full h-auto object-contain rounded-md"
+                          width={500}
+                          height={375}
+                          priority
                         />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-900 font-bold text-sm">✓</span>
+                      
+                      {/* Professional Badge */}
+                      <div className="absolute -top-2 -right-2 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-full p-1.5 shadow-md shadow-green-500/30">
+                        <CheckCircle className="w-4 h-4" />
+                      </div>
+                      
+                      {/* Source Attribution */}
+                      <div className="mt-2 text-center">
+                        <p className="text-xs text-slate-500 italic">
+                          Professional LCA methodology framework
+                        </p>
                       </div>
                     </div>
-                  </div>
-                  <div className="lg:w-2/3">
-                    <p className={`text-lg lg:text-xl text-slate-700 leading-relaxed`}>
-                      <span className="font-semibold text-green-700">Life Cycle Assessment (LCA)</span> evaluates a product's entire journey from raw material extraction and manufacturing to use, recycling, or disposal. It measures overall environmental impact, including energy use, emissions, water consumption, waste, and effects on ecosystems and human health.
-                    </p>
                   </div>
                 </div>
               </div>
 
               {/* LCA Stages Flow */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 mt-8">
                 {[
                   {
-                    icon: "🏭",
+                    icon: <img src="https://img.icons8.com/?size=70&id=t3YbDQQYUcLo&format=png&color=000000" alt="raw material" className="w-16 h-16 mx-auto" />,
                     title: "Raw Materials",
                     desc: "Extraction & Processing",
                     color: "from-amber-500 to-orange-500",
@@ -190,15 +170,15 @@ export default function HomePage() {
                     borderColor: "border-amber-200"
                   },
                   {
-                    icon: "🔧",
-                    title: "Manufacturing",
+                    icon: <img src="https://img.icons8.com/?size=70&id=69678&format=png&color=000000" alt="manufacturing" className="w-16 h-16 mx-auto" />,
+                    title: "Manufacturing", 
                     desc: "Production & Assembly",
                     color: "from-blue-500 to-indigo-500",
                     bgColor: "bg-blue-50",
                     borderColor: "border-blue-200"
                   },
                   {
-                    icon: "🚚",
+                    icon: <img src="https://img.icons8.com/?size=70&id=97LJjCPiqQBL&format=png&color=000000" alt="distribution" className="w-16 h-16 mx-auto" />,
                     title: "Distribution",
                     desc: "Transport & Logistics",
                     color: "from-purple-500 to-pink-500",
@@ -206,7 +186,7 @@ export default function HomePage() {
                     borderColor: "border-purple-200"
                   },
                   {
-                    icon: "♻️",
+                    icon: <img src="https://img.icons8.com/?size=70&id=47000&format=png&color=000000" alt="end of life" className="w-16 h-16 mx-auto" />,
                     title: "End of Life",
                     desc: "Recycling & Disposal",
                     color: "from-green-500 to-teal-500",
@@ -214,13 +194,15 @@ export default function HomePage() {
                     borderColor: "border-green-200"
                   }
                 ].map((stage, index) => (
-                  <div key={index} className={`relative ${stage.bgColor} ${stage.borderColor} border-2 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}>
-                    <div className="text-4xl mb-3">{stage.icon}</div>
-                    <h4 className={`text-lg font-bold text-slate-800 mb-2 ${oswald.className}`}>{stage.title}</h4>
+                  <div key={index} className={`relative ${stage.bgColor} ${stage.borderColor} border rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105`}>
+                    <div className="flex justify-center items-center mb-3">
+                      {stage.icon}
+                    </div>
+                    <h4 className={`text-base font-bold text-slate-800 mb-2 ${oswald.className}`}>{stage.title}</h4>
                     <p className="text-sm text-slate-600">{stage.desc}</p>
                     {index < 3 && (
                       <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-6 transform -translate-y-1/2">
-                        <ArrowRight className="w-4 h-4 text-slate-400" />
+                        <ArrowRight className="w-11 h-8 text-slate-400" />
                       </div>
                     )}
                   </div>
@@ -278,7 +260,7 @@ export default function HomePage() {
                   <p className="text-slate-600 mb-8 leading-relaxed">
                     Advanced interface with comprehensive data controls and detailed visualization capabilities.
                   </p>
-                  <Button size="lg" variant="outline" className={`w-full bg-green-600 text-white border-slate-300 hover:bg-slate-50 ${merriweather.className}`} asChild>
+                  <Button size="lg" variant="outline" className={`w-full bg-green-600 text-white border-slate-300 hover:bg-green-700 ${merriweather.className}`} asChild>
                     <Link href="/expert">Advanced Analysis</Link>
                   </Button>
                 </div>
