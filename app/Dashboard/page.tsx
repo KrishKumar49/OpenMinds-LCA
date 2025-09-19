@@ -89,26 +89,64 @@ export default function Dashboard() {
 
                 <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-slate-900">Net Impact</h3>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <TrendingDown className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <h3 className="font-semibold text-slate-900">Net Impact</h3>
+                    </div>
                     <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
-                  <p className="text-3xl font-bold text-slate-900 mb-2">4.2</p>
-                  <div className="flex items-center space-x-2">
-                    <TrendingDown className="w-4 h-4 text-green-600" />
-                    <span className="text-sm text-green-600">+35% from last test</span>
+                  <div className="mb-3">
+                    <p className="text-3xl font-bold text-slate-900 mb-1">4.2</p>
+                    <p className="text-sm text-slate-600 mb-3">kg CO₂ eq</p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">kg CO₂ eq</p>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-500">Previous</span>
+                      <span className="text-xs font-medium text-slate-700">6.5 kg CO₂ eq</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-500">Improvement</span>
+                      <div className="flex items-center space-x-1">
+                        <TrendingDown className="w-3 h-3 text-green-600" />
+                        <span className="text-xs font-medium text-green-600">35% reduction</span>
+                      </div>
+                    </div>
+                  </div>
                 </Card>
 
                 <Card className="p-6 bg-white border border-slate-200">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold text-slate-900">Total Recyclability</h3>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Recycle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <h3 className="font-semibold text-slate-900">Total Recyclability</h3>
+                    </div>
                     <MoreHorizontal className="w-4 h-4 text-slate-400" />
                   </div>
-                  <p className="text-3xl font-bold text-slate-900 mb-2">89%</p>
-                  <div className="flex items-center space-x-2">
-                    <TrendingUp className="w-4 h-4 text-green-600" />
-                    <span className="text-sm text-green-600">+24% from last test</span>
+                  <div className="mb-3">
+                    <p className="text-3xl font-bold text-slate-900 mb-1">89%</p>
+                    <p className="text-sm text-slate-600 mb-3">Material Recovery Rate</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-500">Previous Period</span>
+                      <span className="text-xs font-medium text-slate-700">72%</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-slate-500">Growth</span>
+                      <div className="flex items-center space-x-1">
+                        <TrendingUp className="w-3 h-3 text-green-600" />
+                        <span className="text-xs font-medium text-green-600">+24% increase</span>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-slate-100">
+                      <div className="w-full bg-slate-200 rounded-full h-2">
+                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '89%' }}></div>
+                      </div>
+                    </div>
                   </div>
                 </Card>
 
