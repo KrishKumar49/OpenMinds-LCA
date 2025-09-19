@@ -22,6 +22,43 @@ import {
 import { PieChart as RechartsPieChart, Cell, Pie, ResponsiveContainer, Tooltip } from "recharts"
 import { DashboardSidebar } from "@/components/dashboard-ui/dashboardsidebarFix"
 
+
+// Import Google Fonts
+import { Cinzel, Oswald, Didact_Gothic, Roboto_Mono, Merriweather } from 'next/font/google'
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+})
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const didactGothic = Didact_Gothic({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+
 const inputsData = [
   { name: "Recycled", value: 52, color: "#10b981" },
   { name: "Virgin", value: 48, color: "#ef4444" },
