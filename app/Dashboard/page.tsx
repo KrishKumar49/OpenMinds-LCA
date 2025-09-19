@@ -243,7 +243,7 @@ export default function Dashboard() {
               {/* Material Flow Visualization */}
               <Card className="p-6 bg-white border border-slate-200 mb-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-semibold text-slate-900">Material Flow Visualization</h3>
+                  <h3 className="font-bold  text-slate-900">Material Flow Visualization</h3>
                   <div className="flex items-center space-x-2">
                     <Button
                       className={`${

@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Recycle, BarChart3, Activity, Database, FileText, Settings, User } from "lucide-react"
+import { Recycle, BarChart3, Activity, Database, FileText, Settings, User, History } from "lucide-react"
 import logo from "../../public/WhatsApp Image 2025-09-18 at 23.40.23_65c59c7b.jpg"
 
 // Import Google Fonts
@@ -74,15 +74,15 @@ const menuItems = [
   {
     title: "GENERAL",
     items: [
-      {
-        href: "/settings",
-        icon: Settings,
-        label: "Settings",
-      },
-      {
+       {
         href: "/security",
         icon: User,
-        label: "Security",
+        label: "Profile",
+      },
+      {
+        href: "/history",
+        icon: History,
+        label: "History",
       },
     ],
   },
@@ -145,8 +145,8 @@ export function DashboardSidebar({ className }: SidebarProps) {
           <User className="w-5 h-5" />
         </div>
         <div>
-          <p className="text-sm font-medium">LCA Expert</p>
-          <p className="text-xs text-green-200">expert@circularlca.com</p>
+          <p className="text-sm font-medium">OpenMines</p>
+          <p className="text-xs text-green-200">openmines@gmail.com</p>
         </div>
       </div>
     </div>
