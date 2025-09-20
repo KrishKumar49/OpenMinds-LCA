@@ -330,7 +330,7 @@ export default function HomePage() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl font-bold mb-6 text-slate-900">A Tool For Everyone</h2>
               <p className="text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
-                From researchers to industry professionals, CircularLCA provides the tools you need for comprehensive
+                From researchers to industry professionals, OpenMines provides the tools you need for comprehensive
                 life cycle assessment and sustainable decision making.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

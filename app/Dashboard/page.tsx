@@ -116,7 +116,7 @@ export default function Dashboard() {
                     </div>
                     <span className="text-xs bg-white/20 px-2 py-1 rounded">Update</span>
                   </div>
-                  <p className="text-sm text-green-100 mb-2">Feb 12th 2024</p>
+                  <p className="text-sm text-green-100 mb-2">20th Sept, 2025</p>
                   <h3 className="text-lg font-semibold mb-1">Circularity increased</h3>
                   <p className="text-2xl font-bold mb-2">40% in 1 week</p>
                   <Button className="bg-transparent hover:bg-white/20 text-white p-0 h-auto font-normal">
@@ -362,7 +362,7 @@ export default function Dashboard() {
 
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="text-center">
-                            <div className="text-2xl font-bold text-green-600">89%</div>
+                            <div className="text-2xl font-bold text-green-600">20%</div>
                             <div className="text-xs text-green-700">Material Recovery</div>
                           </div>
                         </div>
@@ -397,7 +397,7 @@ export default function Dashboard() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-slate-900">Report generated</p>
-                      <p className="text-xs text-slate-500">Q1 2024 Sustainability Report - 4 hours ago</p>
+                      <p className="text-xs text-slate-500">Test-2 Sustainability Report - 4 hours ago</p>
                     </div>
                     <Badge variant="outline">Generated</Badge>
                   </div>

@@ -162,10 +162,10 @@ const questions: Question[] = [
         description: "Consumption of non-renewable resources.",
       },
       {
-        id: "TRACI",
-        text: " All TRACI categories",
+        id: "LCIA",
+        text: " Full LCIA",
         icon: <img src="https://img.icons8.com/?size=35&id=6482&format=png&color=0000FF" alt="" />,
-        description: "Covers the full standardized US EPA TRACI set.",
+        description: "Covers all life cycle impact categories for assessment.",
       },
       {
         id: "ai-decide",
