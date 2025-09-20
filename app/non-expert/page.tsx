@@ -23,6 +23,8 @@ import {
   CalendarDays,
   Recycle,
   Trash2,
+  Search,
+  TrendingUp,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -75,6 +77,40 @@ interface Question {
     image?: string
   }[]
 }
+
+// Static process suggestions for question 2
+const processOptions = [
+  {
+    id: "electricity-aluminum",
+    text: "Electricity, aluminum smelting and ingot casting regions",
+    percentage: "58.48%",
+    description: "Primary aluminum production with regional electricity mix"
+  },
+  {
+    id: "aluminum-primary",
+    text: "Aluminum, primary, smelt, at plant",
+    percentage: "57.91%",
+    description: "Primary aluminum smelting process at production facility"
+  },
+  {
+    id: "copper-storage",
+    text: "Copper, at storage Bridge; USLCI to USEEIO",
+    percentage: "53.06%",
+    description: "Copper production and storage bridge process"
+  },
+  {
+    id: "bituminous-coal",
+    text: "Bituminous coal, at mine",
+    percentage: "47.06%",
+    description: "Coal extraction at mining site"
+  },
+  {
+    id: "cobalt-ore",
+    text: "Cobalt ore; underground/open-pit mining; at mine",
+    percentage: "46.49%",
+    description: "Cobalt ore extraction through underground or open-pit mining"
+  }
+]
 
 const questions: Question[] = [
   {
@@ -250,6 +286,12 @@ export default function NonExpertMode() {
   const [showMixInput, setShowMixInput] = useState(false)
   const [virginPercentage, setVirginPercentage] = useState("")
   const [recycledPercentage, setRecycledPercentage] = useState("")
+  
+  // New states for question 2 process selection
+  const [showProcessSuggestions, setShowProcessSuggestions] = useState(false)
+  const [userTypedProcess, setUserTypedProcess] = useState("")
+  const [selectedProcess, setSelectedProcess] = useState("")
+  
   const mixInputRef = useRef<HTMLDivElement>(null)
 
   const progress = ((currentQuestion + 1) / questions.length) * 100
@@ -262,7 +304,6 @@ export default function NonExpertMode() {
 
     if (optionId === "mix") {
       setShowMixInput(true)
-      // Scroll to the mix input form after a short delay to ensure it's rendered
       setTimeout(() => {
         mixInputRef.current?.scrollIntoView({ 
           behavior: 'smooth', 
@@ -275,11 +316,17 @@ export default function NonExpertMode() {
     const newAnswers = { ...answers, [questions[currentQuestion].id]: optionId }
     setAnswers(newAnswers)
 
+    // Special handling for "ai-decide" based on current question
     if (optionId === "ai-decide") {
-      setTimeout(() => {
-        window.location.href = "/Dashboard"
-      }, 500)
-      return
+      // Only redirect to dashboard from question 1 or 2
+      if (currentQuestion === 0 || currentQuestion === 1) {
+        setTimeout(() => {
+          window.location.href = "/Dashboard"
+        }, 500)
+        return
+      }
+      // For questions 3, 4, and 5, treat "Let AI Decide" as a normal answer
+      // and continue to next question or completion
     }
 
     setTimeout(() => {
@@ -310,12 +357,35 @@ export default function NonExpertMode() {
     }
   }
 
+  // Updated function for question 2 text area submit
   const handleTextAreaSubmit = () => {
     if (textAreaInput.trim()) {
-      const newAnswers = { ...answers, [questions[currentQuestion].id]: textAreaInput }
+      setUserTypedProcess(textAreaInput)
+      setShowProcessSuggestions(true)
+    }
+  }
+
+  // New function to handle process selection
+  const handleProcessSelection = (processId: string) => {
+    const selectedProcessData = processOptions.find(p => p.id === processId)
+    if (selectedProcessData) {
+      setSelectedProcess(`${selectedProcessData.text} (${selectedProcessData.percentage})`)
+    }
+  }
+
+  // New function to continue from process selection
+  const handleProcessContinue = () => {
+    if (selectedProcess) {
+      const newAnswers = { ...answers, [questions[currentQuestion].id]: selectedProcess }
       setAnswers(newAnswers)
-      setTextAreaInput("")
       
+      // Reset all question 2 specific states first
+      setTextAreaInput("")
+      setShowProcessSuggestions(false)
+      setSelectedProcess("")
+      setUserTypedProcess("")
+      
+      // Then advance to next question
       setTimeout(() => {
         if (currentQuestion < questions.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
@@ -323,9 +393,16 @@ export default function NonExpertMode() {
         } else {
           setIsComplete(true)
         }
-      }, 500)
+      }, 10) // Reduced timeout to make it faster
     }
   }
+
+
+
+
+
+
+//HERE
 
   const handleMixSubmit = () => {
     const virgin = parseFloat(virginPercentage)
@@ -357,9 +434,16 @@ export default function NonExpertMode() {
       setShowMixInput(false)
       setVirginPercentage("")
       setRecycledPercentage("")
+    } else if (showProcessSuggestions) {
+      // Go back to the text area input instead of previous question
+      setShowProcessSuggestions(false)
+      setSelectedProcess("")
+      setUserTypedProcess("")
+      // Keep the textAreaInput so user doesn't lose their typed text
     } else if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1)
       setShowHint(false)
+      // Only clear textAreaInput when actually going to previous question
       setTextAreaInput("")
     }
   }
@@ -541,26 +625,116 @@ export default function NonExpertMode() {
                   </div>
                 ) : (
                   <div className="mb-8">
-                    <Card className="p-6 bg-white border-2 border-slate-200 rounded-xl">
-                      <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                        Please describe the process you want to assess:
-                      </h3>
-                      <textarea
-                        value={textAreaInput}
-                        onChange={(e) => setTextAreaInput(e.target.value)}
-                        placeholder="e.g., Processing, extraction ..."
-                        className="w-full h-32 p-4 border border-slate-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 bg-white"
-                      />
-                      <div className="flex justify-end mt-4">
-                        <Button
-                          onClick={handleTextAreaSubmit}
-                          disabled={!textAreaInput.trim()}
-                          className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          Continue
-                        </Button>
+                    {!showProcessSuggestions ? (
+                      // Initial text area for question 2
+                      <Card className="p-6 bg-white border-2 border-slate-200 rounded-xl">
+                        <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                          Please describe the process you want to assess:
+                        </h3>
+                        <textarea
+                          value={textAreaInput}
+                          onChange={(e) => setTextAreaInput(e.target.value)}
+                          placeholder="e.g., copper smelting, aluminum processing, steel production..."
+                          className="w-full h-32 p-4 border border-slate-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 bg-white"
+                        />
+                        <div className="flex justify-end mt-4">
+                          <Button
+                            onClick={handleTextAreaSubmit}
+                            disabled={!textAreaInput.trim()}
+                            className="bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Continue
+                          </Button>
+                        </div>
+                      </Card>
+                    ) : (
+                      // Process suggestions display
+                      <div className="space-y-6">
+                        {/* AI Warning Message */}
+                        <Card className="p-6 bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-xl">
+                          <div className="flex items-start space-x-3">
+                            <div>
+                              <h3 className="font-semibold text-slate-900 mb-2">
+                                <img src="https://img.icons8.com/?size=100&id=ZhOrUkPTso0s&format=png&color=000000" alt="Warning" className="inline w-5 h-5 mr-2" />
+                                 No strong match for "{userTypedProcess}". Did you mean:
+                              </h3>
+                              <p className="text-sm text-slate-600 ml-7">
+                                Select the most appropriate process from our database below:
+                              </p>
+                            </div>
+                          </div>
+                        </Card>
+
+                        {/* Process Options */}
+                        <Card className="p-6 bg-white border-2 border-slate-200 rounded-xl">
+                          <h3 className="text-lg font-semibold text-slate-900 mb-6 flex items-center">
+                            <TrendingUp className="w-5 h-5 mr-2 text-blue-600" />
+                            Suggested Processes (by relevance):
+                          </h3>
+                          
+                          <div className="space-y-3 mb-6">
+                            {processOptions.map((process, index) => (
+                              <div
+                                key={process.id}
+                                className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
+                                  selectedProcess === `${process.text} (${process.percentage})`
+                                    ? "border-blue-500 bg-blue-50 shadow-md"
+                                    : "border-slate-200 hover:border-blue-300 bg-white"
+                                }`}
+                                onClick={() => handleProcessSelection(process.id)}
+                              >
+                                <div className="flex items-start justify-between">
+                                  <div className="flex-1">
+                                    <div className="flex items-center space-x-3 mb-2">
+                                      <span className="text-lg font-bold text-blue-600 bg-blue-100 w-6 h-6 rounded-full flex items-center justify-center text-sm">
+                                        {index + 1}
+                                      </span>
+                                      <h4 className="font-semibold text-slate-900">{process.text}</h4>
+                                    </div>
+                                    <p className="text-sm text-slate-600 ml-9">{process.description}</p>
+                                  </div>
+                                  <div className="ml-4 text-right">
+                                    <Badge 
+                                      className={`px-3 py-1 text-sm font-medium ${
+                                        selectedProcess === `${process.text} (${process.percentage})`
+                                          ? "bg-blue-100 text-blue-800 border-blue-200"
+                                          : "bg-green-100 text-green-800 border-green-200"
+                                      }`}
+                                    >
+                                      {process.percentage}
+                                    </Badge>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Selected Process Display */}
+                          {selectedProcess && (
+                            <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200 rounded-lg mb-4">
+                              <div className="flex items-center space-x-2">
+                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <span className="font-medium text-slate-900">Selected Process:</span>
+                              </div>
+                              <p className="mt-2 font-semibold text-green-700 text-lg">
+                                {selectedProcess}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Continue Button */}
+                          <div className="flex justify-end">
+                            <Button
+                              onClick={handleProcessContinue}
+                              disabled={!selectedProcess}
+                              className="bg-green-600 hover:bg-green-700 text-white disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2"
+                            >
+                              Continue with Selected Process
+                            </Button>
+                          </div>
+                        </Card>
                       </div>
-                    </Card>
+                    )}
                   </div>
                 )}
 
@@ -692,7 +866,7 @@ export default function NonExpertMode() {
                   <Button
                     variant="outline"
                     onClick={goBack}
-                    disabled={currentQuestion === 0}
+                    disabled={currentQuestion === 0 && !showProcessSuggestions && !showManualInput && !showMixInput}
                     className="flex items-center space-x-2 bg-white border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ArrowLeft className="w-4 h-4" />
@@ -701,7 +875,12 @@ export default function NonExpertMode() {
 
                   <div className="text-sm text-slate-500 flex items-center space-x-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span>Select an option to continue</span>
+                    <span>
+                      {showProcessSuggestions 
+                        ? "Select a process to continue" 
+                        : "Select an option to continue"
+                      }
+                    </span>
                   </div>
                 </div>
               </Card>

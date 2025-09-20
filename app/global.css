@@ -1,115 +1,82 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Base colors - Sophisticated Greyscale with Warm Undertones */
-  --background: oklch(0.99 0.008 120);
-  --foreground: oklch(0.12 0.015 240);
-  --card: oklch(0.98 0.012 140);
-  --card-foreground: oklch(0.14 0.018 240);
-  --popover: oklch(0.99 0.008 120);
-  --popover-foreground: oklch(0.12 0.015 240);
-  
-  /* Primary - Deep Forest Green with Blue Undertones */
-  --primary: oklch(0.35 0.15 165);
-  --primary-foreground: oklch(0.98 0.008 120);
-  
-  /* Secondary - Warm Sage Green */
-  --secondary: oklch(0.65 0.12 145);
-  --secondary-foreground: oklch(0.12 0.015 240);
-  
-  /* Muted - Soft Grey-Green */
-  --muted: oklch(0.94 0.015 140);
-  --muted-foreground: oklch(0.48 0.025 200);
-  
-  /* Accent - Vibrant Teal */
-  --accent: oklch(0.55 0.18 185);
-  --accent-foreground: oklch(0.98 0.008 120);
-  
-  /* Destructive - Warm Red */
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.98 0.008 120);
-  
-  /* Borders and Inputs */
-  --border: oklch(0.87 0.015 140);
-  --input: oklch(0.98 0.012 140);
-  --ring: oklch(0.35 0.15 165 / 0.3);
-  
-  /* Chart Colors - Earth Tones */
-  --chart-1: oklch(0.35 0.15 165);  /* Deep Forest */
-  --chart-2: oklch(0.65 0.12 145);  /* Sage Green */
-  --chart-3: oklch(0.55 0.18 185);  /* Teal */
-  --chart-4: oklch(0.45 0.16 125);  /* Olive */
-  --chart-5: oklch(0.38 0.12 205);  /* Deep Blue-Green */
-  
-  /* Radius */
+  /* Updated to more professional color palette with sophisticated tones */
+  --background: oklch(0.99 0.005 220);
+  --foreground: oklch(0.15 0.02 240);
+  --card: oklch(0.97 0.008 220);
+  --card-foreground: oklch(0.15 0.02 240);
+  --popover: oklch(0.99 0.005 220);
+  --popover-foreground: oklch(0.15 0.02 240);
+  --primary: oklch(0.45 0.12 220);
+  --primary-foreground: oklch(0.98 0.005 220);
+  --secondary: oklch(0.55 0.15 160);
+  --secondary-foreground: oklch(0.98 0.005 220);
+  --muted: oklch(0.94 0.01 220);
+  --muted-foreground: oklch(0.45 0.02 240);
+  --accent: oklch(0.6 0.18 180);
+  --accent-foreground: oklch(0.98 0.005 220);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.01 220);
+  --input: oklch(0.99 0.005 220);
+  --ring: oklch(0.45 0.12 220 / 0.3);
+  --chart-1: oklch(0.45 0.12 220);
+  --chart-2: oklch(0.55 0.15 160);
+  --chart-3: oklch(0.5 0.14 200);
+  --chart-4: oklch(0.6 0.16 140);
+  --chart-5: oklch(0.4 0.1 240);
   --radius: 0.75rem;
-  
-  /* Sidebar */
-  --sidebar: oklch(0.97 0.012 140);
-  --sidebar-foreground: oklch(0.14 0.018 240);
-  --sidebar-primary: oklch(0.35 0.15 165);
-  --sidebar-primary-foreground: oklch(0.98 0.008 120);
-  --sidebar-accent: oklch(0.65 0.12 145);
-  --sidebar-accent-foreground: oklch(0.12 0.015 240);
-  --sidebar-border: oklch(0.87 0.015 140);
-  --sidebar-ring: oklch(0.35 0.15 165 / 0.3);
+  --sidebar: oklch(0.97 0.008 220);
+  --sidebar-foreground: oklch(0.15 0.02 240);
+  --sidebar-primary: oklch(0.45 0.12 220);
+  --sidebar-primary-foreground: oklch(0.98 0.005 220);
+  --sidebar-accent: oklch(0.55 0.15 160);
+  --sidebar-accent-foreground: oklch(0.98 0.005 220);
+  --sidebar-border: oklch(0.88 0.01 220);
+  --sidebar-ring: oklch(0.45 0.12 220 / 0.3);
 }
 
 .dark {
-  /* Dark mode with deep, rich backgrounds and high contrast */
-  --background: oklch(0.08 0.015 240);
-  --foreground: oklch(0.95 0.012 180);
-  --card: oklch(0.10 0.018 235);
-  --card-foreground: oklch(0.94 0.015 175);
-  --popover: oklch(0.08 0.015 240);
-  --popover-foreground: oklch(0.95 0.012 180);
-  
-  /* Primary - Bright Emerald with subtle glow */
-  --primary: oklch(0.70 0.20 165);
-  --primary-foreground: oklch(0.08 0.015 240);
-  
-  /* Secondary - Soft Mint Green */
-  --secondary: oklch(0.75 0.18 155);
-  --secondary-foreground: oklch(0.08 0.015 240);
-  
-  /* Muted - Sophisticated Grey-Blue */
-  --muted: oklch(0.15 0.020 235);
-  --muted-foreground: oklch(0.65 0.025 190);
-  
-  /* Accent - Vibrant Cyan */
-  --accent: oklch(0.80 0.22 185);
-  --accent-foreground: oklch(0.08 0.015 240);
-  
-  /* Destructive - Warm Coral */
-  --destructive: oklch(0.65 0.25 25);
-  --destructive-foreground: oklch(0.95 0.012 180);
-  
-  /* Borders and Inputs */
-  --border: oklch(0.20 0.025 235);
-  --input: oklch(0.10 0.018 235);
-  --ring: oklch(0.70 0.20 165 / 0.4);
-  
-  /* Chart Colors - Vibrant but harmonious */
-  --chart-1: oklch(0.70 0.20 165);  /* Emerald */
-  --chart-2: oklch(0.75 0.18 155);  /* Mint */
-  --chart-3: oklch(0.80 0.22 185);  /* Cyan */
-  --chart-4: oklch(0.72 0.18 135);  /* Sage */
-  --chart-5: oklch(0.68 0.16 205);  /* Blue-Green */
-  
-  /* Sidebar - Enhanced depth */
-  --sidebar: oklch(0.10 0.018 235);
-  --sidebar-foreground: oklch(0.94 0.015 175);
-  --sidebar-primary: oklch(0.70 0.20 165);
-  --sidebar-primary-foreground: oklch(0.08 0.015 240);
-  --sidebar-accent: oklch(0.75 0.18 155);
-  --sidebar-accent-foreground: oklch(0.08 0.015 240);
-  --sidebar-border: oklch(0.20 0.025 235);
-  --sidebar-ring: oklch(0.70 0.20 165 / 0.4);
+  /* Enhanced dark mode with more sophisticated professional colors */
+  --background: oklch(0.06 0.01 240);
+  --foreground: oklch(0.92 0.01 220);
+  --card: oklch(0.08 0.01 240);
+  --card-foreground: oklch(0.92 0.01 220);
+  --popover: oklch(0.06 0.01 240);
+  --popover-foreground: oklch(0.92 0.01 220);
+  --primary: oklch(0.65 0.15 220);
+  --primary-foreground: oklch(0.06 0.01 240);
+  --secondary: oklch(0.7 0.18 160);
+  --secondary-foreground: oklch(0.06 0.01 240);
+  --muted: oklch(0.12 0.01 240);
+  --muted-foreground: oklch(0.55 0.02 220);
+  --accent: oklch(0.75 0.2 180);
+  --accent-foreground: oklch(0.06 0.01 240);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.92 0.01 220);
+  --border: oklch(0.18 0.01 240);
+  --input: oklch(0.08 0.01 240);
+  --ring: oklch(0.65 0.15 220 / 0.4);
+  --chart-1: oklch(0.65 0.15 220);
+  --chart-2: oklch(0.7 0.18 160);
+  --chart-3: oklch(0.6 0.16 200);
+  --chart-4: oklch(0.75 0.2 140);
+  --chart-5: oklch(0.55 0.12 240);
+  --sidebar: oklch(0.08 0.01 240);
+  --sidebar-foreground: oklch(0.92 0.01 220);
+  --sidebar-primary: oklch(0.65 0.15 220);
+  --sidebar-primary-foreground: oklch(0.06 0.01 240);
+  --sidebar-accent: oklch(0.7 0.18 160);
+  --sidebar-accent-foreground: oklch(0.06 0.01 240);
+  --sidebar-border: oklch(0.18 0.01 240);
+  --sidebar-ring: oklch(0.65 0.15 220 / 0.4);
 }
 
-* {
+@theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
@@ -152,61 +119,45 @@
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
-    outline-color: hsl(var(--ring) / 0.5);
+    @apply border-border outline-ring/50;
   }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    @apply bg-background text-foreground;
   }
 
+  /* Enhanced professional gradient utilities with sophisticated color transitions */
   .gradient-sustainability {
     background: linear-gradient(
       135deg,
-      oklch(0.35 0.15 165) 0%,    /* Deep Forest Green */
-      oklch(0.45 0.16 155) 25%,   /* Rich Pine */
-      oklch(0.55 0.18 185) 50%,   /* Emerald Teal */
-      oklch(0.65 0.12 145) 75%,   /* Sage Green */
-      oklch(0.45 0.16 125) 100%   /* Olive Green */
+      oklch(0.45 0.12 220) 0%,
+      oklch(0.5 0.14 200) 25%,
+      oklch(0.55 0.15 160) 75%,
+      oklch(0.6 0.16 140) 100%
     );
   }
 
   .gradient-sustainability-subtle {
-    background: linear-gradient(
-      135deg, 
-      oklch(0.97 0.012 165) 0%, 
-      oklch(0.96 0.015 155) 25%,
-      oklch(0.95 0.018 185) 50%, 
-      oklch(0.96 0.012 145) 75%,
-      oklch(0.97 0.010 125) 100%
-    );
+    background: linear-gradient(135deg, oklch(0.97 0.008 220) 0%, oklch(0.96 0.01 200) 50%, oklch(0.95 0.012 160) 100%);
   }
 
+  /* Added professional mesh gradient for hero backgrounds */
   .gradient-mesh {
-    background: 
-      radial-gradient(circle at 20% 80%, oklch(0.35 0.15 165 / 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, oklch(0.55 0.18 185 / 0.10) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, oklch(0.65 0.12 145 / 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 60% 80%, oklch(0.45 0.16 125 / 0.06) 0%, transparent 50%),
-      linear-gradient(135deg, oklch(0.99 0.008 165), oklch(0.98 0.012 155));
+    background: radial-gradient(circle at 20% 80%, oklch(0.45 0.12 220 / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, oklch(0.55 0.15 160 / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, oklch(0.6 0.16 140 / 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, oklch(0.99 0.005 220), oklch(0.97 0.008 220));
   }
 
+  /* Added sophisticated card gradient overlay */
   .gradient-card-overlay {
-    background: linear-gradient(
-      135deg, 
-      oklch(0.98 0.008 165 / 0.85) 0%, 
-      oklch(0.97 0.012 175 / 0.90) 50%,
-      oklch(0.98 0.010 155 / 0.85) 100%
-    );
-    backdrop-filter: blur(24px) saturate(1.2);
-    border: 1px solid oklch(0.87 0.015 165 / 0.4);
-    box-shadow: 
-      0 8px 32px oklch(0.35 0.15 165 / 0.08),
-      0 4px 16px oklch(0.55 0.18 185 / 0.04);
+    background: linear-gradient(135deg, oklch(0.98 0.005 220 / 0.8) 0%, oklch(0.96 0.008 200 / 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid oklch(0.88 0.01 220 / 0.3);
   }
 }
 
 @layer utilities {
+  /* Added floating animation for metal icons */
   @keyframes float {
     0%,
     100% {
@@ -223,24 +174,14 @@
 }
 
 .dark .gradient-mesh {
-  background: 
-    radial-gradient(circle at 20% 80%, oklch(0.70 0.20 165 / 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, oklch(0.80 0.22 185 / 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, oklch(0.75 0.18 155 / 0.10) 0%, transparent 50%),
-    radial-gradient(circle at 60% 80%, oklch(0.72 0.18 135 / 0.08) 0%, transparent 50%),
-    linear-gradient(135deg, oklch(0.08 0.015 240), oklch(0.10 0.018 235));
+  background: radial-gradient(circle at 20% 80%, oklch(0.65 0.15 220 / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, oklch(0.7 0.18 160 / 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, oklch(0.75 0.2 140 / 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, oklch(0.06 0.01 240), oklch(0.08 0.01 240));
 }
 
 .dark .gradient-card-overlay {
-  background: linear-gradient(
-    135deg, 
-    oklch(0.10 0.018 235 / 0.85) 0%, 
-    oklch(0.12 0.020 240 / 0.90) 50%,
-    oklch(0.10 0.015 230 / 0.85) 100%
-  );
-  backdrop-filter: blur(28px) saturate(1.3);
-  border: 1px solid oklch(0.20 0.025 235 / 0.4);
-  box-shadow: 
-    0 12px 40px oklch(0.70 0.20 165 / 0.12),
-    0 6px 20px oklch(0.80 0.22 185 / 0.08);
+  background: linear-gradient(135deg, oklch(0.08 0.01 240 / 0.8) 0%, oklch(0.1 0.01 220 / 0.9) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid oklch(0.18 0.01 240 / 0.3);
 }
